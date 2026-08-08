@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+<meta name="theme-color" content="#1E2A38" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231E2A38'/%3E%3Ctext x='50' y='68' font-size='54' font-family='Georgia,serif' font-weight='700' fill='%23B8935A' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231E2A38'/%3E%3Ctext x='50' y='68' font-size='54' font-family='Georgia,serif' font-weight='700' fill='%23B8935A' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
+<meta name="mobile-web-app-capable" content="yes" />
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Belge%20Asistan%C4%B1%22%2C%22short_name%22%3A%22Belge%20Asistan%C4%B1%22%2C%22display%22%3A%22standalone%22%2C%22start_url%22%3A%22.%22%2C%22background_color%22%3A%22%23EFEAE0%22%2C%22theme_color%22%3A%22%231E2A38%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage/svg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Crect%20width%3D%27100%27%20height%3D%27100%27%20rx%3D%2720%27%20fill%3D%27%25231E2A38%27/%3E%3Ctext%20x%3D%2750%27%20y%3D%2768%27%20font-size%3D%2754%27%20font-family%3D%27Georgia%2Cserif%27%20font-weight%3D%27700%27%20fill%3D%27%2523B8935A%27%20text-anchor%3D%27middle%27%3EB%3C/text%3E%3C/svg%3E%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image/svg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage/svg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Crect%20width%3D%27100%27%20height%3D%27100%27%20rx%3D%2720%27%20fill%3D%27%25231E2A38%27/%3E%3Ctext%20x%3D%2750%27%20y%3D%2768%27%20font-size%3D%2754%27%20font-family%3D%27Georgia%2Cserif%27%20font-weight%3D%27700%27%20fill%3D%27%2523B8935A%27%20text-anchor%3D%27middle%27%3EB%3C/text%3E%3C/svg%3E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image/svg%2Bxml%22%7D%2C%7B%22src%22%3A%22data%3Aimage/svg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Crect%20width%3D%27100%27%20height%3D%27100%27%20rx%3D%2720%27%20fill%3D%27%25231E2A38%27/%3E%3Ctext%20x%3D%2750%27%20y%3D%2768%27%20font-size%3D%2754%27%20font-family%3D%27Georgia%2Cserif%27%20font-weight%3D%27700%27%20fill%3D%27%2523B8935A%27%20text-anchor%3D%27middle%27%3EB%3C/text%3E%3C/svg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image/svg%2Bxml%22%7D%5D%7D" />
+<title>Belge Asistanı</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap');
+
+  :root{
+    --ink:#1E2A38;
+    --ink-soft:#33475C;
+    --paper:#FBF8F2;
+    --paper-line:#E4DED0;
+    --sage:#5B7A63;
+    --sage-dark:#43594A;
+    --gold:#B8935A;
+    --gray:#746C60;
+    --rose:#B85C4A;
+    --shadow: 0 18px 40px -18px rgba(30,42,56,0.35);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Inter',sans-serif;background:#EFEAE0;color:var(--ink);min-height:100vh;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+  input, textarea{font-family:inherit;}
+
+  #app{display:flex;min-height:100vh;}
+  .panel{
+    width:400px;flex-shrink:0;background:var(--ink);color:#F4F1EA;
+    padding:32px 30px;display:flex;flex-direction:column;gap:18px;
+    position:sticky;top:53px;align-self:flex-start;max-height:calc(100vh - 53px);overflow-y:auto;
+  }
+  .stage{flex:1;padding:48px 40px;display:flex;justify-content:center;align-items:flex-start;}
+  .brand{font-family:'Lora',serif;font-weight:600;font-size:20px;display:flex;align-items:center;gap:10px;color:#F4F1EA;}
+  .brand .mark{width:28px;height:28px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);}
+  .sub{color:#B7C0C9;font-size:13px;line-height:1.55;}
+
+  .btn{padding:12px 18px;border-radius:8px;font-weight:600;font-size:14px;transition:transform .12s ease, background .12s ease;}
+  .btn:active{transform:scale(0.97);}
+  .btn-primary{background:var(--sage);color:#fff;}
+  .btn-primary:hover{background:var(--sage-dark);}
+  .btn-primary:disabled{background:#8b9a90;cursor:not-allowed;}
+  .btn-ghost{background:transparent;color:#F4F1EA;border:1px solid rgba(244,241,234,0.35);}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+  .btn-danger{background:transparent;color:var(--rose);border:1px solid var(--rose);}
+  .btn-danger:hover{background:var(--rose);color:#fff;}
+  .btn-sm{padding:6px 10px;font-size:12px;border-radius:6px;}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;}
+
+  .library-list{display:flex;flex-direction:column;gap:14px;width:100%;max-width:640px;}
+  .tpl-card{background:#fff;border-radius:14px;padding:18px 22px;box-shadow:var(--shadow);border-left:5px solid var(--sage);}
+  .tpl-card-top{display:flex;justify-content:space-between;align-items:center;gap:14px;}
+  .tpl-card-footer{display:flex;justify-content:flex-end;align-items:center;gap:18px;margin-top:14px;padding-top:12px;border-top:1px solid var(--paper-line);}
+  .link-muted{background:none;border:none;color:var(--gray);font-size:12.5px;cursor:pointer;text-decoration:underline;padding:6px 2px;}
+  .link-muted:hover{color:var(--sage-dark);}
+  .link-danger{background:none;border:none;color:var(--gray);font-size:12.5px;cursor:pointer;padding:6px 2px;}
+  .link-danger:hover{color:var(--rose);text-decoration:underline;}
+  .danger-confirm-row{font-size:12.5px;color:var(--rose);display:flex;align-items:center;gap:8px;}
+  .tpl-name{font-family:'Lora',serif;font-weight:600;font-size:18px;color:var(--ink);}
+  .tpl-meta{font-size:12.5px;color:var(--gray);margin-top:4px;}
+
+  .answer-input, .name-input{width:100%;padding:12px 14px;border-radius:8px;border:1.5px solid var(--paper-line);font-size:15px;color:var(--ink);}
+  .answer-input:focus, .name-input:focus{outline:none;border-color:var(--sage);}
+  .panel .name-input{background:rgba(244,241,234,0.06);border-color:rgba(244,241,234,0.25);color:#F4F1EA;}
+  .panel .name-input::placeholder{color:#8894a0;}
+
+  .field-chip{background:rgba(244,241,234,0.06);border:1px solid rgba(244,241,234,0.15);border-radius:8px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;font-size:13px;}
+
+  .empty-state{color:var(--gray);font-size:14px;line-height:1.6;max-width:420px;}
+  h1.page-title{font-family:'Lora',serif;font-size:26px;font-weight:600;color:var(--ink);margin:0 0 22px 0;}
+
+  .upload-drop{border:2px dashed var(--paper-line);border-radius:12px;padding:40px 24px;text-align:center;color:var(--gray);background:#fff;box-shadow:var(--shadow);width:100%;max-width:520px;}
+  .upload-drop input{display:none;}
+  .upload-drop label{color:var(--sage-dark);font-weight:600;cursor:pointer;text-decoration:underline;}
+
+  .doc-stack{width:100%;max-width:760px;display:flex;flex-direction:column;gap:18px;}
+  .pdf-page{position:relative;background:var(--paper);box-shadow:var(--shadow);border-radius:4px;overflow:hidden;user-select:none;}
+  .pdf-page img{display:block;width:100%;pointer-events:none;}
+  .pdf-page.markable{cursor:crosshair;}
+
+  .fld-box{position:absolute;display:flex;align-items:center;padding:0 5px;font-family:'Inter',sans-serif;font-weight:600;font-size:12.5px;border-radius:3px;line-height:1.15;overflow:hidden;white-space:normal;word-break:break-word;background:#fff;border:none;}
+  .fld-box.saved{color:var(--sage-dark);}
+  .fld-box.pending-new{background:rgba(184,147,90,0.18);color:var(--gold);}
+  .fld-box.active{color:var(--ink);box-shadow:0 0 0 3px rgba(184,147,90,0.35);}
+  .fld-box.filled{color:var(--ink);}
+  .fld-box.upcoming{background:rgba(255,255,255,0.85);color:var(--gray);}
+  .fld-box.editable{cursor:move;outline:1.5px dashed rgba(184,147,90,0.55);outline-offset:1px;}
+  .fld-box.editable:hover{box-shadow:0 0 0 3px rgba(184,147,90,0.3);outline:1.5px dashed var(--gold);}
+  .fld-box.selected{outline:3px solid var(--gold);outline-offset:1px;z-index:5;}
+  .resize-handle{position:absolute;right:2px;bottom:2px;width:14px;height:14px;background:var(--gold);border:2px solid #fff;border-radius:50%;cursor:nwse-resize;box-shadow:0 1px 3px rgba(0,0,0,0.4);}
+  #tempRect{position:absolute;border:2px dashed var(--gold);background:rgba(184,147,90,0.15);pointer-events:none;}
+
+  .mark-hint{background:rgba(244,241,234,0.06);border:1px solid rgba(244,241,234,0.15);border-radius:8px;padding:12px 14px;font-size:12.5px;color:#D8DEE4;line-height:1.6;}
+
+  .pending-form{background:rgba(184,147,90,0.12);border:1px solid var(--gold);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px;}
+  .pending-form .lbl{font-size:12.5px;color:var(--gold);font-weight:600;}
+  .checkbox-row{display:flex;align-items:center;gap:8px;font-size:13px;color:#F4F1EA;}
+
+  .sig-pad-wrap{background:#fff;border-radius:10px;padding:10px;box-shadow:var(--shadow);}
+  .sig-pad-wrap canvas{width:100%;height:160px;display:block;background:#fff;border-radius:6px;touch-action:none;border:1px dashed var(--paper-line);}
+  .sig-hint{font-size:12px;color:var(--gray);margin-top:6px;}
+
+  .qa-question{font-family:'Lora',serif;font-size:19px;font-weight:600;color:#F4F1EA;line-height:1.4;}
+  .qa-progress{font-size:12px;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;font-weight:600;}
+  .seal{width:60px;height:60px;border-radius:50%;border:2.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;color:#F4F1EA;background:conic-gradient(var(--gold) calc(var(--pct,0)*1%), rgba(244,241,234,0.08) 0);flex-shrink:0;}
+  .seal .inner{width:48px;height:48px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;}
+
+  #topnav{position:sticky;top:0;z-index:30;background:var(--ink);display:flex;gap:2px;padding:0 24px;border-bottom:1px solid rgba(244,241,234,0.15);}
+  .nav-tab{padding:16px 16px;color:#B7C0C9;font-weight:600;font-size:14px;cursor:pointer;border-bottom:3px solid transparent;font-family:'Inter',sans-serif;background:none;}
+  .nav-tab.active{color:#F4F1EA;border-bottom-color:var(--gold);}
+  .nav-tab:hover{color:#F4F1EA;}
+
+  .calc-menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:700px;}
+  .calc-menu-card{background:#fff;border-radius:14px;padding:22px;box-shadow:var(--shadow);border-left:5px solid var(--sage);cursor:pointer;transition:transform .12s ease;}
+  .calc-menu-card:hover{transform:translateY(-2px);}
+  .calc-menu-card h3{font-family:'Lora',serif;font-size:17px;margin:0 0 6px 0;color:var(--ink);}
+  .calc-menu-card p{font-size:13px;color:var(--gray);margin:0;line-height:1.5;}
+
+  .calc-card{background:#fff;border-radius:12px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:18px;}
+  .calc-section-title{font-family:'Lora',serif;font-weight:600;color:var(--sage-dark);font-size:15px;margin:0 0 10px 0;}
+  .calc-row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--paper-line);font-size:14px;color:var(--ink-soft);}
+  .calc-row:last-child{border-bottom:none;}
+  .calc-row .val{font-weight:700;color:var(--ink);white-space:nowrap;}
+  .calc-row .val.editable-val{cursor:pointer;border-radius:4px;padding:2px 6px;transition:background .12s ease;}
+  .calc-row .val.editable-val:hover{background:rgba(184,147,90,0.15);}
+  .edit-cell-input{width:130px;padding:4px 8px;border:1.5px solid var(--gold);border-radius:5px;font-weight:700;font-size:14px;text-align:right;font-family:'Inter',sans-serif;color:var(--ink);}
+  .calc-row.total{font-weight:700;color:var(--ink);}
+  .calc-input-group{margin-bottom:14px;}
+  .calc-input-group label{display:block;font-size:12.5px;color:var(--gray);margin-bottom:6px;font-weight:600;}
+  .calc-highlight{background:rgba(91,122,99,0.1);border-radius:10px;padding:16px 18px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;}
+  .calc-highlight .big{font-family:'Lora',serif;font-size:24px;font-weight:700;color:var(--sage-dark);}
+  .calc-highlight .lbl{font-size:12.5px;color:var(--gray);}
+  .logo-preview{width:80px;height:80px;border-radius:10px;object-fit:contain;background:#fff;border:1px solid var(--paper-line);}
+
+  .lock-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#EFEAE0;padding:24px;}
+  .lock-card{background:#fff;border-radius:16px;padding:40px 36px;box-shadow:var(--shadow);max-width:380px;width:100%;text-align:center;}
+  .lock-card .mark{width:52px;height:52px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:22px;color:var(--gold);margin:0 auto 18px;}
+  .lock-card h2{font-family:'Lora',serif;font-size:20px;margin:0 0 8px 0;color:var(--ink);}
+  .lock-card p{font-size:13px;color:var(--gray);margin:0 0 20px 0;line-height:1.5;}
+  .lock-card input{width:100%;padding:13px 16px;border-radius:8px;border:1.5px solid var(--paper-line);font-size:16px;text-align:center;letter-spacing:2px;margin-bottom:14px;}
+  .lock-card input:focus{outline:none;border-color:var(--sage);}
+  .lock-error{color:var(--rose);font-size:12.5px;margin-bottom:12px;}
+
+  @media (max-width:900px){
+    #app{flex-direction:column;}
+    .panel{width:100%;position:sticky;top:53px;max-height:48vh;overflow-y:auto;z-index:15;box-shadow:0 10px 20px -10px rgba(0,0,0,0.45);}
+    .stage{padding:20px 14px;}
+    .calc-menu-grid{grid-template-columns:1fr;}
+  }
+
+  @media print{
+    body *{visibility:hidden;}
+    .print-area, .print-area *{visibility:visible;}
+    .print-area{position:absolute;top:0;left:0;width:100%;padding:0;margin:0;}
+    .pdf-page{box-shadow:none;border-radius:0;page-break-after:always;}
+    .pdf-page:last-child{page-break-after:auto;}
+    .fld-box{background:#fff !important;border:none !important;box-shadow:none !important;color:#000 !important;outline:none !important;}
+  }
+</style>
+</head>
+<body>
+<div id="topnav"></div>
+<div id="app"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+</script>
+<script>
+(function(){
+
+  var state = {
+    screen: 'library',       // library | upload | mark | fill | done
+    templates: [],
+    draftName: '',
+    draftPages: [],           // dataURLs
+    draftFields: [],          // {id, page, xPct,yPct,wPct,hPct, label}
+    editingTemplateId: null,   // düzenlenmekte olan var olan şablonun id'si (yeni şablonda null)
+    editingDraftFieldId: null, // mark ekranında düzenlenmekte olan mevcut alan
+    drawing: null,             // {pageIndex, startX, startY, rectW, rectH}
+    pendingField: null,        // {page, xPct,yPct,wPct,hPct}
+    currentTemplate: null,     // {id,name,pages:[dataURL...],fields:[...]}
+    fieldIndex: 0,
+    answers: {},
+    saveError: null,
+    saving: false,
+    editingFieldId: null,      // done ekranında düzenlenen alan
+    movingField: null,          // sürükleme sırasında geçici veri
+    movingMarkField: null,      // mark ekranında mevcut alan taşıma sırasında geçici veri
+    resizingField: null,        // bir kutu boyutlandırılırken geçici veri
+    pdfBusy: false,
+    shareNotice: null,
+    shareError: null,
+    importNotice: null,
+    importError: null,
+    confirmDeleteId: null,
+    unlocked: false,
+    lockError: null,
+    changingPassword: false,
+    pwChangeError: null,
+    pwChangeNotice: null,
+
+    section: 'templates',      // templates | calc | company
+    installPromptEvent: null,
+    installNotice: null,
+    calcScreen: 'menu',        // menu | tapu | alici | satici | kira
+    calcRaw: {}, calcOverrides: {}, calcValues: {},
+    calcPdfBusy: false,
+    calcPdfError: null,
+    company: { logo:'', name:'', phone:'', email:'', address:'', agentName:'', agentPhone:'', agentEmail:'' },
+    companyNotice: null
+  };
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function uid(prefix){ return prefix+'_'+Date.now()+'_'+Math.random().toString(36).slice(2,7); }
+  function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
+
+  // ---------- storage (tarayıcının kendi localStorage'ı; bağımsız dosya olarak çalışsın diye) ----------
+  var storage = {
+    get: function(key){
+      return new Promise(function(resolve){
+        try{
+          var v = localStorage.getItem(key);
+          resolve(v === null ? null : { key:key, value:v });
+        }catch(e){ resolve(null); }
+      });
+    },
+    set: function(key, value){
+      return new Promise(function(resolve){
+        try{
+          localStorage.setItem(key, value);
+          resolve({ key:key, value:value });
+        }catch(e){ resolve(null); }
+      });
+    },
+    delete: function(key){
+      return new Promise(function(resolve){
+        try{ localStorage.removeItem(key); resolve({ key:key, deleted:true }); }
+        catch(e){ resolve(null); }
+      });
+    }
+  };
+  async function loadIndex(){
+    try{
+      var res = await storage.get('template-index');
+      state.templates = res ? JSON.parse(res.value) : [];
+    }catch(e){ state.templates = []; }
+  }
+  async function saveIndex(){
+    try{ await storage.set('template-index', JSON.stringify(state.templates)); }
+    catch(e){ console.error('index kaydedilemedi', e); }
+  }
+  async function loadCompanyProfile(){
+    try{
+      var res = await storage.get('company-profile');
+      if(res){ state.company = Object.assign({}, state.company, JSON.parse(res.value)); }
+    }catch(e){}
+  }
+  async function saveCompanyProfileToStorage(){
+    try{ return !!(await storage.set('company-profile', JSON.stringify(state.company))); }
+    catch(e){ return false; }
+  }
+  async function saveTemplate(tpl){
+    try{
+      var metaOk = await storage.set('template-meta:'+tpl.id, JSON.stringify({id:tpl.id,name:tpl.name,createdAt:tpl.createdAt,pageCount:tpl.pages.length,fields:tpl.fields}));
+      if(!metaOk) return false;
+      for(var i=0;i<tpl.pages.length;i++){
+        var pageOk = await storage.set('template-page:'+tpl.id+':'+i, tpl.pages[i]);
+        if(!pageOk) return false;
+      }
+      return true;
+    }catch(e){ console.error('şablon kaydedilemedi', e); return false; }
+  }
+  async function loadTemplate(id){
+    try{
+      var metaRes = await storage.get('template-meta:'+id);
+      if(!metaRes) return null;
+      var meta = JSON.parse(metaRes.value);
+      var pages = [];
+      for(var i=0;i<meta.pageCount;i++){
+        var pRes = await storage.get('template-page:'+id+':'+i);
+        pages.push(pRes ? pRes.value : '');
+      }
+      meta.pages = pages;
+      return meta;
+    }catch(e){ return null; }
+  }
+  async function deleteTemplate(id){
+    try{
+      var metaRes = await storage.get('template-meta:'+id);
+      var pageCount = metaRes ? JSON.parse(metaRes.value).pageCount : 0;
+      await storage.delete('template-meta:'+id);
+      for(var i=0;i<pageCount;i++){
+        try{ await storage.delete('template-page:'+id+':'+i); }catch(e2){}
+      }
+    }catch(e){}
+    state.templates = state.templates.filter(function(t){ return t.id !== id; });
+    await saveIndex();
+  }
+
+  // ---------- pdf rendering ----------
+  async function renderPdfToImages(arrayBuffer){
+    var pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    var images = [];
+    for(var i=1;i<=pdf.numPages;i++){
+      var page = await pdf.getPage(i);
+      var viewport = page.getViewport({ scale: 1.5 });
+      var canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      var ctx = canvas.getContext('2d');
+      await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+      images.push(canvas.toDataURL('image/jpeg', 0.78));
+    }
+    return images;
+  }
+
+  // ---------- paylaşılabilir PDF üretimi (Türkçe karakterler için canvas üzerinde metin bindirme) ----------
+  function loadImage(src){
+    return new Promise(function(resolve, reject){
+      var img = new Image();
+      img.onload = function(){ resolve(img); };
+      img.onerror = reject;
+      img.src = src;
+    });
+  }
+
+  async function renderPageComposite(pageSrc, pageFields, answers){
+    var img = await loadImage(pageSrc);
+    var canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    for(var i=0;i<pageFields.length;i++){
+      var f = pageFields[i];
+      var val = answers[f.id];
+      if(!val) continue;
+      var boxX = f.xPct/100*canvas.width;
+      var boxY = f.yPct/100*canvas.height;
+      var boxW = f.wPct/100*canvas.width;
+      var boxH = f.hPct/100*canvas.height;
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(boxX, boxY, boxW, boxH);
+      if(f.type === 'signature'){
+        try{
+          var sigImg = await loadImage(val);
+          var scale = Math.min(boxW/sigImg.width, boxH/sigImg.height);
+          var dw = sigImg.width*scale, dh = sigImg.height*scale;
+          var dx = boxX + (boxW-dw)/2, dy = boxY + (boxH-dh)/2;
+          ctx.drawImage(sigImg, dx, dy, dw, dh);
+        }catch(e){}
+      } else {
+        ctx.save();
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#1E2A38';
+        var fontSize = Math.max(8, Math.min(boxH*0.62, 22));
+        ctx.font = "600 "+fontSize+"px 'Inter', Arial, sans-serif";
+        var guard = 0;
+        while(ctx.measureText(val).width > boxW-6 && fontSize > 6 && guard < 40){
+          fontSize -= 0.5;
+          ctx.font = "600 "+fontSize+"px 'Inter', Arial, sans-serif";
+          guard++;
+        }
+        ctx.fillText(val, boxX+3, boxY+boxH/2);
+        ctx.restore();
+      }
+    }
+    return canvas.toDataURL('image/jpeg', 0.85);
+  }
+
+  async function generatePdfBlob(){
+    var tpl = state.currentTemplate;
+    var jsPDF = window.jspdf.jsPDF;
+    var doc = null;
+    for(var i=0;i<tpl.pages.length;i++){
+      var pageFields = tpl.fields.filter(function(f){ return f.page === i; });
+      var composite = await renderPageComposite(tpl.pages[i], pageFields, state.answers);
+      var img = await loadImage(composite);
+      if(!doc){ doc = new jsPDF({ unit:'px', format:[img.width, img.height], compress:true }); }
+      else { doc.addPage([img.width, img.height]); }
+      doc.addImage(composite, 'JPEG', 0, 0, img.width, img.height);
+    }
+    return doc.output('blob');
+  }
+
+  function safeFileName(name){
+    return (name || 'belge').replace(/[\\/:*?"<>|]/g,'').trim() || 'belge';
+  }
+
+  async function saveBlobSmart(blob, filename, mimeType){
+    // Destekleyen tarayıcılarda (Chrome/Edge masaüstü) kullanıcı doğrudan bir klasör
+    // (örn. Google Drive senkron klasörü) seçip oraya kaydedebilir.
+    if(window.showSaveFilePicker){
+      try{
+        var handle = await window.showSaveFilePicker({
+          suggestedName: filename,
+          types: [{ description: 'Dosya', accept: { [mimeType]: ['.'+filename.split('.').pop()] } }]
+        });
+        var writable = await handle.createWritable();
+        await writable.write(blob);
+        await writable.close();
+        return 'saved-to-folder';
+      }catch(e){
+        if(e && e.name === 'AbortError'){ return 'cancelled'; }
+        // API var ama başarısız oldu, klasik indirmeye düş
+      }
+    }
+    triggerBlobDownload(blob, filename);
+    return 'downloaded';
+  }
+
+  function triggerBlobDownload(blob, filename){
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 3000);
+  }
+
+  function openBlobInNewTab(blob, preOpenedWindow){
+    try{
+      var url = URL.createObjectURL(blob);
+      if(preOpenedWindow && !preOpenedWindow.closed){
+        preOpenedWindow.location.href = url;
+      } else {
+        window.open(url, '_blank');
+      }
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 60000);
+    }catch(e){ console.error('PDF açılamadı', e); }
+  }
+
+  // ---------- render ----------
+  var root = document.getElementById('app');
+  var topnavEl = document.getElementById('topnav');
+
+  function renderTopNav(){
+    var tabs = [
+      { key:'templates', label:'Şablonlar' },
+      { key:'calc', label:'Hesaplamalar' },
+      { key:'company', label:'Şirket Profili' }
+    ];
+    topnavEl.innerHTML = tabs.map(function(t){
+      return '<button class="nav-tab'+(state.section===t.key?' active':'')+'" onclick="app.switchSection(\''+t.key+'\')">'+t.label+'</button>';
+    }).join('');
+  }
+
+  var DEFAULT_APP_PASSWORD = 'ilyada2026';
+  function getAppPassword(){
+    try{
+      var custom = localStorage.getItem('app-password');
+      return custom || DEFAULT_APP_PASSWORD;
+    }catch(e){ return DEFAULT_APP_PASSWORD; }
+  }
+
+  function renderLockScreen(){
+    topnavEl.innerHTML = '';
+    root.innerHTML =
+      '<div class="lock-screen"><div class="lock-card">' +
+        '<div class="mark">B</div>' +
+        '<h2>Belge Asistanı</h2>' +
+        '<p>Devam etmek için şifreyi girin.</p>' +
+        (state.lockError ? '<div class="lock-error">'+escapeHtml(state.lockError)+'</div>' : '') +
+        '<input type="password" id="lockInput" inputmode="text" placeholder="Şifre" autofocus onkeydown="if(event.key===\'Enter\'){app.tryUnlock()}"/>' +
+        '<button class="btn btn-primary" style="width:100%;" onclick="app.tryUnlock()">Giriş Yap</button>' +
+      '</div></div>';
+    var inp = document.getElementById('lockInput');
+    if(inp) inp.focus();
+  }
+
+  function render(){
+    if(!state.unlocked){ return renderLockScreen(); }
+    renderTopNav();
+    if(state.section === 'company') return renderCompany();
+    if(state.section === 'calc') return renderCalcSection();
+    if(state.screen === 'library') return renderLibrary();
+    if(state.screen === 'upload') return renderUpload();
+    if(state.screen === 'mark') return renderMark();
+    if(state.screen === 'fill') return renderFill();
+    if(state.screen === 'done') return renderDone();
+  }
+
+  function renderCalcSection(){
+    if(state.calcScreen === 'menu') return renderCalcMenu();
+    if(CALC_DEFS[state.calcScreen]) return renderCalcGeneric(state.calcScreen);
+  }
+
+  function renderPasswordChangeForm(){
+    return '<div class="pending-form">' +
+      (state.pwChangeError ? ('<div class="lock-error" style="margin-bottom:0;">'+escapeHtml(state.pwChangeError)+'</div>') : '') +
+      '<input class="answer-input" id="pwCurrent" type="password" placeholder="Mevcut şifre"/>' +
+      '<input class="answer-input" id="pwNew1" type="password" placeholder="Yeni şifre"/>' +
+      '<input class="answer-input" id="pwNew2" type="password" placeholder="Yeni şifre (tekrar)"/>' +
+      '<div class="btn-row">' +
+        '<button class="btn btn-primary btn-sm" onclick="app.submitPasswordChange()">Kaydet</button>' +
+        '<button class="btn btn-ghost btn-sm" onclick="app.togglePasswordChange()">Vazgeç</button>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function renderLibrary(){
+    var list = state.templates.map(function(t){
+      var deleteBtn = (state.confirmDeleteId === t.id)
+        ? ('<span class="danger-confirm-row">Emin misiniz? ' +
+            '<button class="btn btn-danger btn-sm" onclick="app.removeTemplate(\''+t.id+'\')">Evet, Sil</button> ' +
+            '<button class="btn btn-ghost btn-sm" onclick="app.cancelDeleteTemplate()">Vazgeç</button></span>')
+        : ('<button class="link-danger" onclick="app.askDeleteTemplate(\''+t.id+'\')">Sil</button>');
+      return '<div class="tpl-card">' +
+        '<div class="tpl-card-top">' +
+          '<div><div class="tpl-name">'+escapeHtml(t.name)+'</div>' +
+          '<div class="tpl-meta">'+t.fieldCount+' alan · '+t.pageCount+' sayfa · '+new Date(t.createdAt).toLocaleDateString('tr-TR')+'</div></div>' +
+          '<div class="btn-row">' +
+            '<button class="btn btn-ghost" onclick="app.editTemplate(\''+t.id+'\')">Düzenle</button>' +
+            '<button class="btn btn-primary" onclick="app.startFill(\''+t.id+'\')">Doldur</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="tpl-card-footer">' +
+          '<button class="link-muted" onclick="app.exportTemplate(\''+t.id+'\')">Dosya Olarak Aktar</button>' +
+          deleteBtn +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    root.innerHTML =
+      '<div class="panel">' +
+        '<div class="brand"><span class="mark">B</span>Belge Asistanı</div>' +
+        '<div class="sub">PDF şablonlarınızı yükleyin, alanları elle işaretleyin; sonrasında her belgeyi soru-cevapla saniyeler içinde doldurup PDF olarak alın.</div>' +
+        '<button class="btn btn-primary" onclick="app.goUpload()">+ Yeni Şablon Yükle</button>' +
+        (state.installPromptEvent ?
+          ('<button class="btn btn-primary" style="width:100%;" onclick="app.installApp()">📲 Uygulama Olarak Yükle</button>')
+          : ('<div class="sub" style="background:rgba(244,241,234,0.06);border-radius:8px;padding:10px 12px;">📱 Telefonunuzda program gibi kullanmak için: tarayıcı menüsünden <b>"Ana Ekrana Ekle"</b> / <b>"Uygulama Yükle"</b> (Android: ⋮ menü, iPhone: Paylaş ikonu) seçeneğini kullanın.</div>')) +
+        (state.installNotice ? ('<div class="sub" style="color:#CFE0D3;">'+escapeHtml(state.installNotice)+'</div>') : '') +
+        '<div style="border-top:1px solid rgba(244,241,234,0.15);padding-top:16px;margin-top:4px;">' +
+          (state.templates.length ? ('<button class="btn btn-ghost" style="width:100%;margin-bottom:10px;" onclick="app.exportAllTemplates()">Tüm Şablonları Tek Dosyada Dışa Aktar</button>') : '') +
+          '<div class="sub" style="margin-bottom:8px;">İpucu: Kaydederken açılan pencerede bilgisayarınızdaki Google Drive / OneDrive senkron klasörünü seçerseniz, dosya telefonunuzda otomatik olarak belirir — ayrıca göndermenize gerek kalmaz.</div>' +
+          '<label for="importFileInput" class="btn btn-ghost" style="display:inline-block;width:100%;text-align:center;">Şablon Dosyası Yükle (.json)</label>' +
+          '<input type="file" id="importFileInput" accept=".json" style="display:none;" onchange="app.importTemplateFile(event)"/>' +
+        '</div>' +
+        (state.importError ? ('<div style="background:rgba(184,92,74,0.15);border:1px solid var(--rose);color:#F0B7AC;border-radius:8px;padding:10px 12px;font-size:12.5px;line-height:1.5;">'+escapeHtml(state.importError)+'</div>') : '') +
+        (state.importNotice ? ('<div style="background:rgba(91,122,99,0.18);border:1px solid var(--sage);color:#CFE0D3;border-radius:8px;padding:10px 12px;font-size:12.5px;line-height:1.5;">'+escapeHtml(state.importNotice)+'</div>') : '') +
+        '<div style="border-top:1px solid rgba(244,241,234,0.15);padding-top:14px;margin-top:4px;">' +
+          (state.changingPassword ? renderPasswordChangeForm() :
+            ('<div class="btn-row">' +
+              '<button class="btn btn-ghost btn-sm" onclick="app.togglePasswordChange()">Şifreyi Değiştir</button>' +
+              '<button class="btn btn-ghost btn-sm" onclick="app.lockApp()">Kilitle</button>' +
+            '</div>')) +
+          (state.pwChangeNotice ? ('<div class="sub" style="color:#CFE0D3;">'+escapeHtml(state.pwChangeNotice)+'</div>') : '') +
+        '</div>' +
+      '</div>' +
+      '<div class="stage"><div class="library-list">' +
+        '<h1 class="page-title">Şablon Kütüphanesi</h1>' +
+        (state.templates.length ? list :
+          '<div class="empty-state">Henüz şablon eklemediniz. Soldaki "Yeni Şablon Yükle" butonuyla bir PDF belgesi yükleyin, ardından doldurulacak yerleri fareyle sürükleyerek kendiniz işaretleyin.</div>') +
+      '</div></div>';
+  }
+
+  function renderUpload(){
+    root.innerHTML =
+      '<div class="panel">' +
+        '<div class="brand"><span class="mark">B</span>Belge Asistanı</div>' +
+        '<div class="sub">PDF belgenizi yükleyin. Bir sonraki adımda, doldurulacak alanları belge üzerinde fareyle sürükleyerek kendiniz işaretleyeceksiniz.</div>' +
+        '<button class="btn btn-ghost" onclick="app.goLibrary()">← Kütüphaneye Dön</button>' +
+      '</div>' +
+      '<div class="stage">' +
+        '<div class="upload-drop">' +
+          '<div style="font-size:15px;margin-bottom:10px;color:var(--ink);font-weight:600;">PDF belgesi seçin</div>' +
+          '<div style="margin-bottom:16px;">Dosyanızı <label for="fileInput">buradan seçin</label>.</div>' +
+          '<input type="file" id="fileInput" accept="application/pdf" onchange="app.handleFile(event)" />' +
+          '<div id="uploadStatus" style="margin-top:14px;font-size:13px;color:var(--sage-dark);"></div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function fieldBoxesHtml(fields, mode, answers, activeId, editingId){
+    // mode: 'mark' | 'fill' | 'done'
+    return fields.map(function(f){
+      var cls = 'fld-box ';
+      var content = escapeHtml(f.label) + (f.type === 'signature' ? ' ✒' : '');
+      if(mode === 'mark'){
+        cls += 'saved';
+      } else {
+        var val = answers ? answers[f.id] : undefined;
+        if(val){
+          cls += 'filled';
+          content = (f.type === 'signature')
+            ? '<img src="'+val+'" style="max-width:100%;max-height:100%;object-fit:contain;"/>'
+            : escapeHtml(val);
+        }
+        else if(f.id === activeId){ cls += 'active'; }
+        else { cls += 'upcoming'; }
+      }
+      var handle = '';
+      if(mode === 'mark' || mode === 'done'){
+        cls += ' editable';
+        if(f.id === editingId){ cls += ' selected'; }
+        handle = '<span class="resize-handle" data-field-id="'+f.id+'"></span>';
+      }
+      return '<div class="'+cls+'" id="field-box-'+f.id+'" data-page="'+f.page+'" style="left:'+f.xPct+'%;top:'+f.yPct+'%;width:'+f.wPct+'%;height:'+f.hPct+'%;">'+content+handle+'</div>';
+    }).join('');
+  }
+
+  function pageStackHtml(pages, fields, mode, answers, activeId, markable, editingId){
+    return pages.map(function(src, idx){
+      var pageFields = fields.filter(function(f){ return f.page === idx; });
+      var pendingHtml = '';
+      if(mode==='mark' && state.pendingField && state.pendingField.page === idx){
+        var p = state.pendingField;
+        pendingHtml = '<div class="fld-box pending-new" style="left:'+p.xPct+'%;top:'+p.yPct+'%;width:'+p.wPct+'%;height:'+p.hPct+'%;">Yeni alan</div>';
+      }
+      return '<div class="pdf-page'+(markable?' markable':'')+'" data-page-index="'+idx+'">' +
+        '<img src="'+src+'" draggable="false"/>' +
+        fieldBoxesHtml(pageFields, mode, answers, activeId, editingId) +
+        pendingHtml +
+      '</div>';
+    }).join('');
+  }
+
+  function fitTextInBoxes(){
+    var boxes = document.querySelectorAll('.fld-box');
+    boxes.forEach(function(box){
+      if(box.querySelector('img')) return;
+      if(!box.textContent || !box.textContent.trim()) return;
+      box.style.fontSize = '';
+      var fontSize = parseFloat(getComputedStyle(box).fontSize) || 12.5;
+      var minFont = 7;
+      var guard = 0;
+      while(fontSize > minFont && guard < 40 && (box.scrollWidth > box.clientWidth + 1 || box.scrollHeight > box.clientHeight + 1)){
+        fontSize -= 0.5;
+        box.style.fontSize = fontSize + 'px';
+        guard++;
+      }
+    });
+  }
+
+  function renderMark(){
+    var fieldsList = state.draftFields.map(function(f, i){
+      return '<div class="field-chip"><span>'+(i+1)+'. '+escapeHtml(f.label)+(f.type==='signature'?' ✒':'')+' <span style="color:#8894a0;">(sayfa '+(f.page+1)+')</span></span>' +
+        '<button class="btn btn-danger btn-sm" onclick="app.removeDraftField(\''+f.id+'\')">Sil</button></div>';
+    }).join('');
+
+    var pendingForm = '';
+    if(state.pendingField){
+      pendingForm =
+        '<div class="pending-form">' +
+          '<div class="lbl">Bu alanın adı ne?</div>' +
+          '<input class="answer-input" id="pendingLabelInput" placeholder="örn: Kiracının Adı Soyadı" autofocus onkeydown="if(event.key===\'Enter\'){app.confirmPendingField()}"/>' +
+          '<label class="checkbox-row"><input type="checkbox" id="pendingIsSignature"/> Bu bir imza alanı</label>' +
+          '<div class="btn-row">' +
+            '<button class="btn btn-primary btn-sm" onclick="app.confirmPendingField()">Ekle</button>' +
+            '<button class="btn btn-ghost btn-sm" onclick="app.cancelPendingField()">Vazgeç</button>' +
+          '</div>' +
+        '</div>';
+    }
+
+    var editDraftForm = '';
+    var editingField = state.editingDraftFieldId ? state.draftFields.filter(function(f){ return f.id === state.editingDraftFieldId; })[0] : null;
+    if(editingField){
+      editDraftForm =
+        '<div class="pending-form">' +
+          '<div class="lbl">Alanı Düzenle</div>' +
+          '<input class="answer-input" id="editDraftLabelInput" value="'+escapeHtml(editingField.label)+'" autofocus onkeydown="if(event.key===\'Enter\'){app.saveDraftFieldLabel()}"/>' +
+          '<label class="checkbox-row"><input type="checkbox" id="editDraftIsSignature" '+(editingField.type==='signature'?'checked':'')+'/> Bu bir imza alanı</label>' +
+          '<div class="btn-row">' +
+            '<button class="btn btn-primary btn-sm" onclick="app.saveDraftFieldLabel()">Kaydet</button>' +
+            '<button class="btn btn-danger btn-sm" onclick="app.deleteDraftFieldFromEdit()">Sil</button>' +
+            '<button class="btn btn-ghost btn-sm" onclick="app.cancelDraftFieldEdit()">Kapat</button>' +
+          '</div>' +
+        '</div>';
+    }
+
+    root.innerHTML =
+      '<div class="panel">' +
+        '<div class="brand"><span class="mark">B</span>Belge Asistanı</div>' +
+        (state.editingTemplateId ?
+          '<div class="mark-hint">📝 Var olan bir şablonu düzenliyorsunuz. Kayan/hatalı bir alanı <b>tıklayıp sürükleyerek</b> düzeltin, isim değiştirmek için <b>üzerine tıklayın</b>. Boş bir yere sürükleyerek yeni alan da ekleyebilirsiniz.</div>'
+          : '<div class="mark-hint">Belge üzerinde, doldurulacak yerin üzerine fareyle tıklayıp sürükleyerek bir kutu çizin. Kutuyu bıraktığınızda o alana bir isim vereceksiniz.</div>') +
+        pendingForm +
+        editDraftForm +
+        '<div>' +
+          '<div style="font-size:12.5px;color:#B7C0C9;margin-bottom:6px;">Şablon adı</div>' +
+          '<input class="name-input" placeholder="örn: Konut Kira Sözleşmesi" value="'+escapeHtml(state.draftName)+'" oninput="app.setDraftName(this.value)"/>' +
+        '</div>' +
+        (state.draftFields.length ? ('<div style="display:flex;flex-direction:column;gap:8px;">'+fieldsList+'</div>') : '') +
+        (state.saveError ? ('<div style="background:rgba(184,92,74,0.15);border:1px solid var(--rose);color:#F0B7AC;border-radius:8px;padding:10px 12px;font-size:12.5px;line-height:1.5;">'+escapeHtml(state.saveError)+'</div>') : '') +
+        '<button class="btn btn-primary" '+((state.draftFields.length && state.draftName.trim() && !state.saving) ? '' : 'disabled')+' onclick="app.confirmTemplate()">'+(state.saving ? 'Kaydediliyor…' : (state.editingTemplateId ? ('Değişiklikleri Kaydet ('+state.draftFields.length+' alan)') : ('Şablonu Kaydet ('+state.draftFields.length+' alan)')))+'</button>' +
+        '<button class="btn btn-ghost" onclick="app.goLibrary()">Vazgeç</button>' +
+      '</div>' +
+      '<div class="stage"><div class="doc-stack">' +
+        pageStackHtml(state.draftPages, state.draftFields, 'mark', null, null, true, state.editingDraftFieldId) +
+      '</div></div>';
+    fitTextInBoxes();
+  }
+
+  function renderFill(){
+    var tpl = state.currentTemplate;
+    var fields = tpl.fields;
+    var idx = state.fieldIndex;
+    var field = fields[idx];
+    var answeredCount = fields.filter(function(f){ return state.answers[f.id]; }).length;
+    var pct = Math.round((answeredCount/fields.length)*100);
+    var isSig = field.type === 'signature';
+
+    var inputHtml = isSig ?
+      ('<div class="sig-pad-wrap"><canvas id="sigPad" width="480" height="160"></canvas></div>' +
+       '<div class="sig-hint">Fare veya parmağınızla imzanızı çizin.</div>' +
+       '<button class="btn btn-ghost btn-sm" onclick="app.clearSignature()" type="button">Temizle</button>')
+      :
+      ('<input class="answer-input" id="answerInput" autofocus placeholder="Cevabınızı yazın…" value="'+escapeHtml(state.answers[field.id]||'')+'" onkeydown="if(event.key===\'Enter\'){app.nextField()}"/>');
+
+    root.innerHTML =
+      '<div class="panel">' +
+        '<div class="brand"><span class="mark">B</span>Belge Asistanı</div>' +
+        '<div class="qa-progress">Soru '+(idx+1)+' / '+fields.length+'</div>' +
+        '<div class="qa-question">'+(isSig ? (escapeHtml(field.label)+' için imza atın') : (escapeHtml(field.label)+' nedir?'))+'</div>' +
+        inputHtml +
+        '<div class="btn-row">' +
+          (idx>0 ? '<button class="btn btn-ghost" onclick="app.prevField()">← Geri</button>' : '') +
+          '<button class="btn btn-primary" onclick="app.nextField()">'+(idx===fields.length-1 ? 'Belgeyi Tamamla' : 'İleri →')+'</button>' +
+        '</div>' +
+        '<div style="flex:1;"></div>' +
+        '<div style="display:flex;align-items:center;gap:14px;">' +
+          '<div class="seal" style="--pct:'+pct+';"><div class="inner">'+pct+'%</div></div>' +
+          '<div class="sub" style="margin:0;">'+answeredCount+' / '+fields.length+' alan dolduruldu</div>' +
+        '</div>' +
+        '<button class="btn btn-ghost" onclick="app.goLibrary()">Kütüphaneye Dön</button>' +
+      '</div>' +
+      '<div class="stage"><div class="doc-stack">' +
+        pageStackHtml(tpl.pages, fields, 'fill', state.answers, field.id, false) +
+      '</div></div>';
+
+    if(isSig){
+      attachSignaturePad(field);
+    } else {
+      var inp = document.getElementById('answerInput');
+      if(inp){ inp.focus(); inp.selectionStart = inp.value.length; }
+    }
+    fitTextInBoxes();
+    var box = document.getElementById('field-box-'+field.id);
+    if(box){ box.scrollIntoView({behavior:'smooth', block:'center'}); }
+  }
+
+  function attachSignaturePad(field){
+    var canvas = document.getElementById('sigPad');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    ctx.lineWidth = 2.4;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = '#1E2A38';
+
+    var existing = state.answers[field.id];
+    if(existing){
+      var img = new Image();
+      img.onload = function(){ ctx.drawImage(img, 0, 0, canvas.width, canvas.height); };
+      img.src = existing;
+    }
+
+    var drawing = false, last = null;
+    function pos(e){
+      var rect = canvas.getBoundingClientRect();
+      var pt = (e.touches && e.touches.length) ? e.touches[0] : e;
+      return {
+        x: (pt.clientX-rect.left) * (canvas.width/rect.width),
+        y: (pt.clientY-rect.top) * (canvas.height/rect.height)
+      };
+    }
+    function start(e){ drawing = true; last = pos(e); e.preventDefault(); }
+    function move(e){
+      if(!drawing) return;
+      var p = pos(e);
+      ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+      last = p;
+      e.preventDefault();
+    }
+    function end(){
+      if(!drawing) return;
+      drawing = false;
+      state.answers[field.id] = canvas.toDataURL('image/png');
+    }
+    canvas.addEventListener('mousedown', start);
+    canvas.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    canvas.addEventListener('touchstart', start, {passive:false});
+    canvas.addEventListener('touchmove', move, {passive:false});
+    canvas.addEventListener('touchend', end);
+  }
+
+  function renderDone(){
+    var tpl = state.currentTemplate;
+    var editingField = null;
+    if(state.editingFieldId){
+      editingField = tpl.fields.filter(function(f){ return f.id === state.editingFieldId; })[0] || null;
+    }
+
+    var editForm = '';
+    if(editingField){
+      if(editingField.type === 'signature'){
+        editForm =
+          '<div class="pending-form">' +
+            '<div class="lbl">'+escapeHtml(editingField.label)+' — imzayı düzelt</div>' +
+            '<div class="sig-pad-wrap"><canvas id="sigPad" width="380" height="140"></canvas></div>' +
+            '<div class="btn-row">' +
+              '<button class="btn btn-ghost btn-sm" onclick="app.clearSignature(\''+editingField.id+'\')" type="button">Temizle</button>' +
+              '<button class="btn btn-primary btn-sm" onclick="app.cancelEdit()">Tamam</button>' +
+            '</div>' +
+          '</div>';
+      } else {
+        editForm =
+          '<div class="pending-form">' +
+            '<div class="lbl">'+escapeHtml(editingField.label)+' — düzelt</div>' +
+            '<input class="answer-input" id="editValueInput" value="'+escapeHtml(state.answers[editingField.id]||'')+'" onkeydown="if(event.key===\'Enter\'){app.saveEditValue()}"/>' +
+            '<div class="btn-row">' +
+              '<button class="btn btn-primary btn-sm" onclick="app.saveEditValue()">Kaydet</button>' +
+              '<button class="btn btn-ghost btn-sm" onclick="app.cancelEdit()">Kapat</button>' +
+            '</div>' +
+          '</div>';
+      }
+    }
+
+    root.innerHTML =
+      '<div class="panel">' +
+        '<div class="brand"><span class="mark">B</span>Belge Asistanı</div>' +
+        '<div class="sub">Belge tamamlandı. Hatalı bir alanın üzerine <b>tıklayın</b> ve düzeltin; konumu kaymışsa üzerine tıklayıp <b>sürükleyerek</b> taşıyın.</div>' +
+        editForm +
+        (state.shareError ? ('<div style="background:rgba(184,92,74,0.15);border:1px solid var(--rose);color:#F0B7AC;border-radius:8px;padding:10px 12px;font-size:12.5px;line-height:1.5;">'+escapeHtml(state.shareError)+'</div>') : '') +
+        (state.shareNotice ? ('<div style="background:rgba(91,122,99,0.18);border:1px solid var(--sage);color:#CFE0D3;border-radius:8px;padding:10px 12px;font-size:12.5px;line-height:1.5;">'+escapeHtml(state.shareNotice)+'</div>') : '') +
+        '<button class="btn btn-primary" '+(state.pdfBusy?'disabled':'')+' onclick="app.downloadPdf()">'+(state.pdfBusy?'Hazırlanıyor…':'PDF Olarak İndir')+'</button>' +
+        '<button class="btn btn-ghost" '+(state.pdfBusy?'disabled':'')+' onclick="app.sharePdf()">Paylaş (WhatsApp vb.)</button>' +
+        '<button class="btn btn-ghost btn-sm" onclick="window.print()">Yazdır…</button>' +
+        '<button class="btn btn-ghost" onclick="app.goLibrary()">Kütüphaneye Dön</button>' +
+      '</div>' +
+      '<div class="stage"><div style="width:100%;max-width:800px;">' +
+        '<h1 class="page-title">Önizleme ve Düzeltme</h1>' +
+        '<div class="doc-stack print-area">' +
+          pageStackHtml(tpl.pages, tpl.fields, 'done', state.answers, null, false, state.editingFieldId) +
+        '</div>' +
+      '</div></div>';
+
+    fitTextInBoxes();
+
+    if(editingField && editingField.type === 'signature'){
+      attachSignaturePad(editingField);
+    } else if(editingField){
+      var inp = document.getElementById('editValueInput');
+      if(inp){ inp.focus(); inp.select(); }
+    }
+  }
+
+  // ---------- şirket profili ----------
+  function renderCompany(){
+    var c = state.company;
+    root.innerHTML =
+      '<div class="panel">' +
+        '<div class="brand"><span class="mark">B</span>Belge Asistanı</div>' +
+        '<div class="sub">Bu bilgiler, oluşturduğunuz her hesaplama PDF\'inin üst kısmında otomatik olarak görünür.</div>' +
+        (state.companyNotice ? ('<div style="background:rgba(91,122,99,0.18);border:1px solid var(--sage);color:#CFE0D3;border-radius:8px;padding:10px 12px;font-size:12.5px;">'+escapeHtml(state.companyNotice)+'</div>') : '') +
+        '<button class="btn btn-primary" onclick="app.saveCompanyProfile()">Kaydet</button>' +
+      '</div>' +
+      '<div class="stage"><div style="width:100%;max-width:640px;">' +
+        '<h1 class="page-title">Şirket Profili</h1>' +
+        '<div class="calc-card" style="display:flex;flex-direction:column;gap:16px;">' +
+          '<div style="display:flex;align-items:center;gap:16px;">' +
+            (c.logo ? ('<img class="logo-preview" src="'+c.logo+'"/>') : '<div class="logo-preview" style="display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:11px;">Logo yok</div>') +
+            '<div>' +
+              '<label for="logoInput" class="btn btn-ghost btn-sm">Logo Yükle</label>' +
+              '<input type="file" id="logoInput" accept="image/*" style="display:none;" onchange="app.handleLogoUpload(event)"/>' +
+            '</div>' +
+          '</div>' +
+          '<div class="calc-input-group"><label>Şirket Adı</label><input class="answer-input" value="'+escapeHtml(c.name)+'" oninput="app.setCompanyField(\'name\', this.value)"/></div>' +
+          '<div class="calc-input-group"><label>Şirket Telefonu</label><input class="answer-input" value="'+escapeHtml(c.phone)+'" oninput="app.setCompanyField(\'phone\', this.value)"/></div>' +
+          '<div class="calc-input-group"><label>Şirket E-postası</label><input class="answer-input" value="'+escapeHtml(c.email)+'" oninput="app.setCompanyField(\'email\', this.value)"/></div>' +
+          '<div class="calc-input-group"><label>Şirket Adresi</label><input class="answer-input" value="'+escapeHtml(c.address)+'" oninput="app.setCompanyField(\'address\', this.value)"/></div>' +
+          '<div style="border-top:1px solid var(--paper-line);padding-top:14px;">' +
+            '<div class="calc-input-group"><label>Danışman Adı Soyadı</label><input class="answer-input" value="'+escapeHtml(c.agentName)+'" oninput="app.setCompanyField(\'agentName\', this.value)"/></div>' +
+            '<div class="calc-input-group"><label>Danışman Telefonu</label><input class="answer-input" value="'+escapeHtml(c.agentPhone)+'" oninput="app.setCompanyField(\'agentPhone\', this.value)"/></div>' +
+            '<div class="calc-input-group"><label>Danışman E-postası</label><input class="answer-input" value="'+escapeHtml(c.agentEmail)+'" oninput="app.setCompanyField(\'agentEmail\', this.value)"/></div>' +
+          '</div>' +
+        '</div>' +
+      '</div></div>';
+  }
+
+  // ---------- hesaplama sabitleri ----------
+  function fmtTL(n){
+    if(!isFinite(n)) n = 0;
+    return Math.round(n).toLocaleString('tr-TR', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' ₺';
+  }
+  function fmtPct1(n){
+    if(!isFinite(n)) n = 0;
+    return n.toLocaleString('tr-TR', {minimumFractionDigits:1, maximumFractionDigits:1}) + ' %';
+  }
+  function fmtYear1(n){
+    if(!isFinite(n)) n = 0;
+    return n.toLocaleString('tr-TR', {maximumFractionDigits:1}) + ' yıl';
+  }
+  function num(v){ var n = parseFloat(String(v).replace(/\./g,'').replace(',', '.')); return isFinite(n) ? n : (parseFloat(v)||0); }
+  function formatThousands(v){
+    var digits = String(v).replace(/\D/g,'');
+    if(!digits) return '';
+    return digits.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  function calcRow(type, def, valueNum){
+    var fmt = def.format || fmtTL;
+    var display = fmt(valueNum);
+    return '<div class="calc-row'+(def.total?' total':'')+'">' +
+      '<span>'+escapeHtml(def.label)+'</span>' +
+      '<span class="val editable-val" data-raw="'+valueNum+'" onclick="app.startEditCell(this,\''+type+'\',\''+def.id+'\')">'+escapeHtml(display)+'</span>' +
+    '</div>';
+  }
+  function calcSection(title, rowsHtml){
+    return '<div class="calc-card"><div class="calc-section-title">'+escapeHtml(title)+'</div>'+rowsHtml+'</div>';
+  }
+
+  // ---------- hesaplayıcı tanımları (her hücre, kendinden önceki hücrelere bağlı sırayla hesaplanır) ----------
+  var CALC_DEFS = {
+    tapu: [
+      { id:'tapuHarci', group:'alici', label:'Tapu Harcı (%4)', compute:function(v){ return v.tapuda*0.04; } },
+      { id:'doner', group:'alici', label:'Döner Sermaye', compute:function(v){ return 6681; } },
+      { id:'aKomisyon', group:'alici', label:'Komisyon (%2)', compute:function(v){ return v.gercek*0.02; } },
+      { id:'aKdv', group:'alici', label:'Komisyon KDV (%20)', compute:function(v){ return v.aKomisyon*0.20; } },
+      { id:'aKomTop', group:'alici', label:'Komisyon Toplam', compute:function(v){ return v.aKomisyon+v.aKdv; } },
+      { id:'aToplamMasraf', group:'alici', label:'Toplam Masraf', total:true, compute:function(v){ return v.tapuHarci+v.doner+v.aKomTop; } },
+      { id:'aToplamOdeme', group:'alici', label:'Toplam Ödeme', total:true, compute:function(v){ return v.gercek+v.aToplamMasraf; } },
+      { id:'sKomisyon', group:'satici', label:'Komisyon (%2)', compute:function(v){ return v.gercek*0.02; } },
+      { id:'sKdv', group:'satici', label:'Komisyon KDV (%20)', compute:function(v){ return v.sKomisyon*0.20; } },
+      { id:'sKomTop', group:'satici', label:'Komisyon Toplamı', compute:function(v){ return v.sKomisyon+v.sKdv; } },
+      { id:'sToplamMasraf', group:'satici', label:'Toplam Masraf', total:true, compute:function(v){ return v.sKomTop; } },
+      { id:'sNet', group:'satici', label:'Satıcıya Kalan Net', total:true, compute:function(v){ return v.gercek-v.sToplamMasraf; } },
+      { id:'cFark', group:'ceza', label:'Fark', compute:function(v){ return v.gercek-v.tapuda; } },
+      { id:'cEksik', group:'ceza', label:'Eksik Tapu Harcı (%4)', compute:function(v){ return Math.max(0,v.cFark)*0.04; } },
+      { id:'cCeza', group:'ceza', label:'Ceza Miktarı (%100)', compute:function(v){ return v.cEksik; } },
+      { id:'cToplam', group:'ceza', label:'Toplam Ceza', total:true, compute:function(v){ return v.cEksik+v.cCeza; } }
+    ],
+    aliciDahil: [
+      { id:'sf', group:'main', label:'Satış Fiyatı', total:true, compute:function(v){ return (v.teklif - v.tapuda*0.04 - 6681)/(1+0.02*1.2); } },
+      { id:'tapuHarci', group:'alici', label:'Tapu Harcı (%4 — Tapuda Gösterilen Bedel Üzerinden)', compute:function(v){ return v.tapuda*0.04; } },
+      { id:'doner', group:'alici', label:'Döner Sermaye', compute:function(v){ return 6681; } },
+      { id:'aKomisyon', group:'alici', label:'Komisyon (%2)', compute:function(v){ return v.sf*0.02; } },
+      { id:'aKdv', group:'alici', label:'Komisyon KDV (%20)', compute:function(v){ return v.aKomisyon*0.20; } },
+      { id:'aKomTop', group:'alici', label:'Komisyon Toplamı', compute:function(v){ return v.aKomisyon+v.aKdv; } },
+      { id:'aToplamMasraf', group:'alici', label:'Toplam Masraf', total:true, compute:function(v){ return v.tapuHarci+v.doner+v.aKomTop; } },
+      { id:'sKomisyon', group:'satici', label:'Komisyon (%2)', compute:function(v){ return v.sf*0.02; } },
+      { id:'sKdv', group:'satici', label:'Komisyon KDV (%20)', compute:function(v){ return v.sKomisyon*0.20; } },
+      { id:'sKomTop', group:'satici', label:'Komisyon Toplamı', compute:function(v){ return v.sKomisyon+v.sKdv; } },
+      { id:'sToplamMasraf', group:'satici', label:'Toplam Masraf', total:true, compute:function(v){ return v.sKomTop; } },
+      { id:'sNet', group:'satici', label:'Satıcıya Kalan Net', total:true, compute:function(v){ return v.sf-v.sToplamMasraf; } }
+    ],
+    aliciHaric: [
+      { id:'sf', group:'main', label:'Satış Fiyatı', total:true, compute:function(v){ return v.teklif/(1+0.02*1.2); } },
+      { id:'aKomisyon', group:'alici', label:'Komisyon (%2)', compute:function(v){ return v.sf*0.02; } },
+      { id:'aKdv', group:'alici', label:'Komisyon KDV (%20)', compute:function(v){ return v.aKomisyon*0.20; } },
+      { id:'aKomTop', group:'alici', label:'Komisyon Toplamı', total:true, compute:function(v){ return v.aKomisyon+v.aKdv; } },
+      { id:'sKomisyon', group:'satici', label:'Komisyon (%2)', compute:function(v){ return v.sf*0.02; } },
+      { id:'sKdv', group:'satici', label:'Komisyon KDV (%20)', compute:function(v){ return v.sKomisyon*0.20; } },
+      { id:'sKomTop', group:'satici', label:'Komisyon Toplamı', compute:function(v){ return v.sKomisyon+v.sKdv; } },
+      { id:'sToplamMasraf', group:'satici', label:'Toplam Masraf', total:true, compute:function(v){ return v.sKomTop; } },
+      { id:'sNet', group:'satici', label:'Satıcıya Kalan Net', total:true, compute:function(v){ return v.sf-v.sToplamMasraf; } }
+    ],
+    saticiHaric: [
+      { id:'sf', group:'main', label:'Satış Fiyatı', total:true, compute:function(v){ return v.net/(1-0.02*1.2); } },
+      { id:'aSf', group:'alici', label:'Evin Satış Fiyatı', compute:function(v){ return v.sf; } },
+      { id:'aKomisyon', group:'alici', label:'Emlak Hizmet Bedeli (%2)', compute:function(v){ return v.sf*0.02; } },
+      { id:'aKdv', group:'alici', label:'Emlak Hizmet Bedeli KDV (%20)', compute:function(v){ return v.aKomisyon*0.20; } },
+      { id:'aKomTop', group:'alici', label:'Emlak Hizmet Bedeli Toplamı', total:true, compute:function(v){ return v.aKomisyon+v.aKdv; } },
+      { id:'aToplamOdeme', group:'alici', label:'Alıcı Toplam Ödeme', total:true, compute:function(v){ return v.sf+v.aKomTop; } },
+      { id:'sKomisyon', group:'satici', label:'Komisyon (%2)', compute:function(v){ return v.sf*0.02; } },
+      { id:'sKdv', group:'satici', label:'Komisyon KDV (%20)', compute:function(v){ return v.sKomisyon*0.20; } },
+      { id:'sKomTop', group:'satici', label:'Komisyon Toplamı', compute:function(v){ return v.sKomisyon+v.sKdv; } },
+      { id:'sSf', group:'satici', label:'Evin Satış Fiyatı', compute:function(v){ return v.sf; } },
+      { id:'sNet', group:'satici', label:'Satıcının Eline Geçecek Net', total:true, compute:function(v){ return v.net; } },
+      { id:'toplamHizmet', group:'main', label:'Toplam Hizmet Bedeli', total:true, compute:function(v){ return v.aKomTop+v.sKomTop; } }
+    ],
+    saticiDahil: [
+      { id:'sf', group:'main', label:'Satış Fiyatı', total:true, compute:function(v){ return v.net/(1-0.02*1.2); } },
+      { id:'aTapuHarci', group:'alici', label:'Tapu Harcı (%4 — Tapuda Gösterilen Bedel Üzerinden)', compute:function(v){ return v.tapuda*0.04; } },
+      { id:'aDoner', group:'alici', label:'Döner Sermaye', compute:function(v){ return 6681; } },
+      { id:'aKomisyon', group:'alici', label:'Komisyon (%2)', compute:function(v){ return v.sf*0.02; } },
+      { id:'aKdv', group:'alici', label:'Komisyon KDV (%20)', compute:function(v){ return v.aKomisyon*0.20; } },
+      { id:'aKomTop', group:'alici', label:'Komisyon Toplamı', compute:function(v){ return v.aKomisyon+v.aKdv; } },
+      { id:'aToplamOdeme', group:'alici', label:'Alıcı Toplam Ödeme', total:true, compute:function(v){ return v.sf+v.aTapuHarci+v.aDoner+v.aKomTop; } },
+      { id:'sKomisyon', group:'satici', label:'Komisyon (%2)', compute:function(v){ return v.sf*0.02; } },
+      { id:'sKdv', group:'satici', label:'Komisyon KDV (%20)', compute:function(v){ return v.sKomisyon*0.20; } },
+      { id:'sKomTop', group:'satici', label:'Komisyon Toplamı', compute:function(v){ return v.sKomisyon+v.sKdv; } },
+      { id:'sToplamMasraf', group:'satici', label:'Toplam Masraf', total:true, compute:function(v){ return v.sKomTop; } },
+      { id:'toplamHizmet', group:'main', label:'Toplam Hizmet Bedeli', total:true, compute:function(v){ return v.aKomTop+v.sKomTop; } }
+    ],
+    kira: [
+      { id:'yillikKira', group:'main', label:'Yıllık Kira Geliri', compute:function(v){ return v.aylikKira*12; } },
+      { id:'getiriOrani', group:'main', label:'Kira Getiri Oranı', total:true, format:fmtPct1, compute:function(v){ return v.satisFiyati>0 ? (v.yillikKira/v.satisFiyati*100) : 0; } },
+      { id:'amortisman', group:'main', label:'Amortisman Süresi', total:true, format:fmtYear1, compute:function(v){ return v.yillikKira>0 ? (v.satisFiyati/v.yillikKira) : 0; } }
+    ]
+  };
+
+  var CALC_SECTIONS = {
+    tapu: { alici:'A. Alıcı Masrafları', satici:'B. Satıcı Masrafları', ceza:'C. Ceza Hesabı (Eksik Beyan)' },
+    aliciDahil: { main:'Hesaplanan Değerler', alici:'Alıcı Detayları', satici:'Satıcı Detayları' },
+    aliciHaric: { main:'Hesaplanan Değerler', alici:'Alıcı Detayları', satici:'Satıcı Detayları' },
+    saticiHaric: { main:'Hesaplanan Değerler', alici:'Alıcı Detayları', satici:'Satıcı Detayları' },
+    saticiDahil: { main:'Hesaplanan Değerler', alici:'Alıcı Detayları', satici:'Satıcı Detayları' },
+    kira: { main:'Detaylı Hesaplama' }
+  };
+
+  var CALC_INPUTS = {
+    tapu: [ {key:'gercek', label:'Gerçek Satış Bedeli (TL)', amount:true}, {key:'tapuda', label:'Tapuda Gösterilen Satış Bedeli (TL)', amount:true} ],
+    aliciDahil: [ {key:'teklif', label:'Alıcının Toplam Teklifi — Tapu Dahil (TL)', amount:true}, {key:'tapuda', label:'Tapuda Gösterilecek Bedel (TL)', amount:true} ],
+    aliciHaric: [ {key:'teklif', label:'Alıcının Toplam Teklifi — Tapu Hariç (TL)', amount:true} ],
+    saticiHaric: [ {key:'net', label:'Satıcının İstediği Net Bedel (TL)', amount:true} ],
+    saticiDahil: [ {key:'net', label:'Satıcının İstediği Net Bedel (TL)', amount:true}, {key:'tapuda', label:'Tapuda Gösterilecek Bedel (TL)', amount:true} ],
+    kira: [ {key:'satisFiyati', label:'Satış Fiyatı (TL)', amount:true}, {key:'aylikKira', label:'Aylık Beklenen Kira (TL)', amount:true} ]
+  };
+  var KIRA_PIYASA_ORT = 4; // referans kira getiri oranı (%) — Türkiye genel piyasa ortalamasına yakın bir kıyaslama değeri
+
+  var CALC_META = {
+    tapu: { title:'Tapu Masrafı', desc:'Gerçek satış bedeli ve tapuda gösterilen bedeli girin, sonuçlar aşağıda canlı hesaplanır.', pdfTitle:'Tapu Masrafı Hesaplama Özeti', menuDesc:'Gerçek satış bedeli ve tapuda gösterilen bedeli girerek alıcı/satıcı masraflarını ve eksik beyan cezasını hesaplayın.' },
+    aliciDahil: { title:'Alıcı Teklif (Tapu Dahil)', desc:'Alıcının tapu masrafları dahil verdiği toplam teklifi girin.', pdfTitle:'Alıcı Teklif (Tapu Dahil) Hesaplama Özeti', menuDesc:'Alıcının tapu masrafları da dahil verdiği toplam teklifi girerek satış fiyatını ve tarafların masraflarını bulun.',
+      highlight:[ {key:'sf', label:'Satış Fiyatı'}, {key:'teklif', label:'Alıcı Toplam Ödemesi', raw:true} ] },
+    aliciHaric: { title:'Alıcı Teklif (Tapu Hariç)', desc:'Alıcının sadece satış fiyatı+komisyon içeren teklifini girin (tapu masrafları bu hesaplamaya dahil edilmez, ayrıca değerlendirilir).', pdfTitle:'Alıcı Teklif (Tapu Hariç) Hesaplama Özeti', menuDesc:'Alıcının tapu masrafları hariç verdiği teklifi girerek satış fiyatını bulun.',
+      highlight:[ {key:'sf', label:'Satış Fiyatı'}, {key:'teklif', label:'Alıcı Teklifi', raw:true} ] },
+    saticiHaric: { title:'Satıcı Teklif (Tapu Hariç)', desc:'Satıcının istediği net bedeli girin. Bu hesaplamada tapu masrafları hiç yer almaz, sadece emlak hizmet bedeli gösterilir.', pdfTitle:'Satıcı Teklif (Tapu Hariç) Hesaplama Özeti', menuDesc:'Satıcının istediği net bedeli girerek satış fiyatını ve emlak hizmet bedelini bulun (tapu masrafları dahil edilmez).',
+      highlight:[ {key:'sf', label:'Satış Fiyatı'}, {key:'net', label:'Satıcıya Kalan Net', raw:true} ] },
+    saticiDahil: { title:'Satıcı Teklif (Tapu Dahil)', desc:'Satıcının istediği net bedeli ve tapuda gösterilecek bedeli girin — alıcının tapu masrafları dahil tüm ödeme detayları da gösterilsin.', pdfTitle:'Satıcı Teklif (Tapu Dahil) Hesaplama Özeti', menuDesc:'Satıcının istediği net bedeli girerek satış fiyatını, alıcının tapu masrafları dahil tüm ödemesini bulun.',
+      highlight:[ {key:'sf', label:'Satış Fiyatı'}, {key:'net', label:'Satıcıya Kalan Net', raw:true} ] },
+    kira: { title:'Kira Getirisi', desc:'Satış fiyatı ve aylık beklenen kirayı girin.', pdfTitle:'Kira Getirisi Hesaplama Özeti', menuDesc:'Satış fiyatı ve aylık kirayı girerek kira getiri oranını ve amortisman süresini hesaplayın.',
+      highlight:[ {key:'getiriOrani', label:'Kira Getiri Oranı', format:fmtPct1}, {key:'amortisman', label:'Amortisman Süresi', format:fmtYear1} ] }
+  };
+  var CALC_ORDER = ['main','alici','satici','ceza'];
+  var CALC_KEYS = ['tapu','saticiDahil','aliciHaric','saticiHaric','aliciDahil','kira'];
+
+  function recomputeCalc(type){
+    var defs = CALC_DEFS[type];
+    var raw = state.calcRaw[type] || {};
+    var overrides = state.calcOverrides[type] || {};
+    var prevValues = state.calcValues[type] || {};
+    var values = {};
+    for(var k in raw){ values[k] = raw[k]; }
+    defs.forEach(function(def){
+      if(overrides[def.id] && prevValues[def.id] !== undefined){
+        values[def.id] = prevValues[def.id];
+      } else {
+        values[def.id] = def.compute(values);
+      }
+    });
+    state.calcValues[type] = values;
+    return values;
+  }
+
+  function kiraYorumMetni(satisFiyati, aylikKira, getiri){
+    if((satisFiyati||0) <= 0 || (aylikKira||0) <= 0){
+      return 'Değerlendirme için satış fiyatı ve aylık kira girin.';
+    }
+    var oran = getiri / KIRA_PIYASA_ORT;
+    if(oran >= 1.3){
+      return 'Bu getiri oranı ('+fmtPct1(getiri)+'), piyasa referans düzeyinin ('+fmtPct1(KIRA_PIYASA_ORT)+') belirgin şekilde üzerinde. Amortisman süresi kısa olduğundan, kârlı bir yatırım olarak değerlendirilebilir.';
+    }
+    if(oran >= 1.0){
+      return 'Bu getiri oranı ('+fmtPct1(getiri)+'), piyasa referans düzeyinin ('+fmtPct1(KIRA_PIYASA_ORT)+') üzerinde. Yatırım açısından görece cazip bir kira getirisi sunuyor.';
+    }
+    if(oran >= 0.8){
+      return 'Bu getiri oranı ('+fmtPct1(getiri)+'), piyasa referans düzeyine ('+fmtPct1(KIRA_PIYASA_ORT)+') yakın. Standart, ortalama seviyede bir yatırım getirisi.';
+    }
+    return 'Bu getiri oranı ('+fmtPct1(getiri)+'), piyasa referans düzeyinin ('+fmtPct1(KIRA_PIYASA_ORT)+') belirgin şekilde altında. Kira geliri açısından cazip görünmüyor; sermaye kazancı beklentisi gibi başka faktörler öne çıkmadıkça temkinli değerlendirilmeli.';
+  }
+
+  function calcResultsHtml(type, values){
+    var defs = CALC_DEFS[type];
+    var sectionTitles = CALC_SECTIONS[type];
+    var meta = CALC_META[type];
+    var html = '';
+    if(meta.highlight){
+      html += '<div class="calc-highlight">' + meta.highlight.map(function(h){
+        var v = h.raw ? (state.calcRaw[type]||{})[h.key] : values[h.key];
+        var fmt = h.format || fmtTL;
+        return '<div><div class="lbl">'+escapeHtml(h.label)+'</div><div class="big">'+escapeHtml(fmt(v))+'</div></div>';
+      }).join('') + '</div>';
+    }
+    CALC_ORDER.forEach(function(grp){
+      var rowsDefs = defs.filter(function(d){ return d.group === grp; });
+      if(!rowsDefs.length) return;
+      var rowsHtml = rowsDefs.map(function(d){ return calcRow(type, d, values[d.id]); }).join('');
+      html += calcSection(sectionTitles[grp] || grp, rowsHtml);
+    });
+    if(type === 'kira'){
+      var raw = state.calcRaw.kira || {};
+      var getiri = values.getiriOrani || 0;
+      var yorum = kiraYorumMetni(raw.satisFiyati, raw.aylikKira, getiri);
+      html += '<div class="calc-card"><div class="calc-section-title">Yatırım Değerlendirmesi</div><div class="sub">'+escapeHtml(yorum)+'</div></div>';
+    }
+    if(type === 'tapu'){
+      html += '<div class="sub" style="max-width:600px;">Not: Döner sermaye ve harç oranları zamanla değişebilir; kesin rakamlar için güncel tapu müdürlüğü tarifesini kontrol edin. Bu araç bir ön hesaplama sağlar, resmi belge yerine geçmez.</div>';
+    }
+    return html;
+  }
+
+  function refreshCalcResultsDom(type){
+    var el = document.getElementById('calcResults');
+    if(el){ el.innerHTML = calcResultsHtml(type, state.calcValues[type]); }
+  }
+
+  function renderCalcMenu(){
+    root.innerHTML =
+      '<div class="panel">' +
+        '<div class="brand"><span class="mark">B</span>Belge Asistanı</div>' +
+        '<div class="sub">Emlak işlemlerinde sık kullanılan masraf ve getiri hesaplamalarını yapın, sonucu PDF olarak müşterinizle paylaşın.</div>' +
+      '</div>' +
+      '<div class="stage"><div class="calc-menu-grid">' +
+        CALC_KEYS.map(function(k){
+          var m = CALC_META[k];
+          return '<div class="calc-menu-card" onclick="app.goCalc(\''+k+'\')"><h3>'+escapeHtml(m.title)+'</h3><p>'+escapeHtml(m.menuDesc)+'</p></div>';
+        }).join('') +
+      '</div></div>';
+  }
+
+  function calcPanelExtras(){
+    return (state.calcPdfError ? ('<div style="background:rgba(184,92,74,0.15);border:1px solid var(--rose);color:#F0B7AC;border-radius:8px;padding:10px 12px;font-size:12.5px;">'+escapeHtml(state.calcPdfError)+'</div>') : '');
+  }
+
+  function renderCalcGeneric(type){
+    var meta = CALC_META[type];
+    var inputsCfg = CALC_INPUTS[type];
+    if(!state.calcRaw[type]){
+      var raw = {};
+      inputsCfg.forEach(function(f){ raw[f.key] = 0; });
+      state.calcRaw[type] = raw;
+    }
+    var values = recomputeCalc(type);
+    var raw2 = state.calcRaw[type];
+    var inputsHtml = inputsCfg.map(function(f){
+      var val = raw2[f.key];
+      var displayVal = f.amount ? (val ? formatThousands(Math.round(val)) : '') : ((val || val===0) ? val : '');
+      return '<div class="calc-input-group"><label>'+escapeHtml(f.label)+'</label>' +
+        '<input class="answer-input" id="ci_'+f.key+'" type="text" inputmode="'+(f.amount?'numeric':'decimal')+'" value="'+displayVal+'" oninput="'+(f.amount?'app.formatAmountInput(this);':'')+'app.recalcGeneric(\''+type+'\')"/></div>';
+    }).join('');
+
+    root.innerHTML =
+      '<div class="panel">' +
+        '<div class="brand"><span class="mark">B</span>Belge Asistanı</div>' +
+        '<div class="sub">'+escapeHtml(meta.desc)+'</div>' +
+        '<div class="sub">Aşağıdaki sonuç satırlarındaki herhangi bir rakama <b>tıklayarak</b> elle düzeltebilirsiniz — bağlı toplamlar otomatik güncellenir.</div>' +
+        calcPanelExtras() +
+        '<button class="btn btn-primary" '+(state.calcPdfBusy?'disabled':'')+' onclick="app.downloadCalcPdf(\''+type+'\')">'+(state.calcPdfBusy?'Hazırlanıyor…':'PDF Olarak İndir')+'</button>' +
+        '<button class="btn btn-ghost btn-sm" onclick="app.resetCalcOverrides(\''+type+'\')">Elle Değişiklikleri Sıfırla</button>' +
+        '<button class="btn btn-ghost" onclick="app.goCalc(\'menu\')">← Hesaplamalar</button>' +
+      '</div>' +
+      '<div class="stage"><div style="width:100%;max-width:700px;">' +
+        '<h1 class="page-title">'+escapeHtml(meta.title)+'</h1>' +
+        '<div class="calc-card">' + inputsHtml + '</div>' +
+        '<div id="calcResults">' + calcResultsHtml(type, values) + '</div>' +
+      '</div></div>';
+  }
+
+  // ---------- PDF özet oluşturma (canvas tabanlı, Türkçe karakter uyumlu) ----------
+  async function generateCalcSummaryPdfBlob(title, sections, noteText){
+    var W = 794;   // A4 genişliği ~96dpi
+    var H = 1123;  // A4 yüksekliği ~96dpi — tüm hesaplama PDF'leri standart, tutarlı sayfa boyutunda çıksın
+    var marginX = 60;
+    var lineH = 28;
+    var canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#FBF8F2'; ctx.fillRect(0,0,W,H);
+
+    var y = 50;
+    var textX = marginX;
+    if(state.company.logo){
+      try{
+        var logoImg = await loadImage(state.company.logo);
+        var logoH = 56, logoW = logoImg.width*(logoH/logoImg.height);
+        ctx.drawImage(logoImg, marginX, y-38, logoW, logoH);
+        textX = marginX + logoW + 16;
+      }catch(e){}
+    }
+    ctx.fillStyle = '#1E2A38';
+    ctx.font = '700 20px Arial';
+    ctx.fillText(state.company.name || 'Emlak Danışmanlığı', textX, y-14);
+    ctx.font = '400 12.5px Arial';
+    ctx.fillStyle = '#746C60';
+    ctx.fillText([state.company.phone, state.company.email, state.company.address].filter(Boolean).join('   ·   '), textX, y+6);
+    y += 40;
+    if(state.company.agentName){
+      ctx.font = '600 13px Arial'; ctx.fillStyle = '#33475C';
+      ctx.fillText('Danışman: '+state.company.agentName + (state.company.agentPhone? '   ·   '+state.company.agentPhone:'') + (state.company.agentEmail? '   ·   '+state.company.agentEmail:''), marginX, y);
+      y += 24;
+    }
+    ctx.strokeStyle = '#E4DED0'; ctx.beginPath(); ctx.moveTo(marginX,y); ctx.lineTo(W-marginX,y); ctx.stroke();
+    y += 42;
+
+    ctx.font = '700 23px Arial'; ctx.fillStyle = '#1E2A38';
+    ctx.fillText(title, marginX, y);
+    ctx.font = '400 12px Arial'; ctx.fillStyle = '#746C60';
+    var dateStr = new Date().toLocaleDateString('tr-TR');
+    var dw = ctx.measureText(dateStr).width;
+    ctx.fillText(dateStr, W-marginX-dw, y);
+    y += 40;
+
+    sections.forEach(function(s){
+      ctx.font = '700 15px Arial'; ctx.fillStyle = '#5B7A63';
+      ctx.fillText(s.heading, marginX, y);
+      y += 24;
+      s.rows.forEach(function(r){
+        ctx.font = '400 14px Arial'; ctx.fillStyle = '#33475C';
+        ctx.fillText(r[0], marginX+10, y);
+        ctx.font = '700 14px Arial'; ctx.fillStyle = '#1E2A38';
+        var tw = ctx.measureText(r[1]).width;
+        ctx.fillText(r[1], W-marginX-tw, y);
+        ctx.strokeStyle = '#EFEAE0';
+        ctx.beginPath(); ctx.moveTo(marginX, y+8); ctx.lineTo(W-marginX, y+8); ctx.stroke();
+        y += lineH;
+      });
+      y += 16;
+    });
+
+    if(noteText){
+      y += 6;
+      ctx.font = '700 15px Arial'; ctx.fillStyle = '#5B7A63';
+      ctx.fillText('Yatırım Değerlendirmesi', marginX, y);
+      y += 24;
+      ctx.font = '400 13.5px Arial'; ctx.fillStyle = '#33475C';
+      var maxWidth = W - marginX*2 - 20;
+      var words = noteText.split(' ');
+      var line = '';
+      for(var i=0;i<words.length;i++){
+        var test = line ? (line+' '+words[i]) : words[i];
+        if(ctx.measureText(test).width > maxWidth && line){
+          ctx.fillText(line, marginX+10, y);
+          y += 22;
+          line = words[i];
+        } else {
+          line = test;
+        }
+      }
+      if(line){ ctx.fillText(line, marginX+10, y); y += 22; }
+    }
+
+    var dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+    var jsPDF = window.jspdf.jsPDF;
+    var doc = new jsPDF({ unit:'px', format:[W,H], compress:true });
+    doc.addImage(dataUrl, 'JPEG', 0, 0, W, H);
+    return doc.output('blob');
+  }
+
+  function buildCalcSections(type){
+    var defs = CALC_DEFS[type];
+    var values = state.calcValues[type] || {};
+    var sectionTitles = CALC_SECTIONS[type];
+    var sections = [];
+    CALC_ORDER.forEach(function(grp){
+      var rowsDefs = defs.filter(function(d){ return d.group === grp; });
+      if(!rowsDefs.length) return;
+      sections.push({
+        heading: sectionTitles[grp] || grp,
+        rows: rowsDefs.map(function(d){ return [d.label, (d.format||fmtTL)(values[d.id])]; })
+      });
+    });
+    return sections;
+  }
+
+  // ---------- actions ----------
+  var app = {};
+
+  app.tryUnlock = function(){
+    var inp = document.getElementById('lockInput');
+    var val = inp ? inp.value : '';
+    if(val === getAppPassword()){
+      state.unlocked = true;
+      state.lockError = null;
+      try{ localStorage.setItem('app-unlocked', 'true'); }catch(e){}
+      render();
+    } else {
+      state.lockError = 'Şifre yanlış, tekrar deneyin.';
+      render();
+    }
+  };
+  app.lockApp = function(){
+    state.unlocked = false;
+    try{ localStorage.removeItem('app-unlocked'); }catch(e){}
+    render();
+  };
+  app.installApp = async function(){
+    if(!state.installPromptEvent) return;
+    var evt = state.installPromptEvent;
+    state.installPromptEvent = null;
+    render();
+    try{
+      evt.prompt();
+      var choice = await evt.userChoice;
+      if(choice && choice.outcome === 'accepted'){
+        state.installNotice = 'Kurulum başladı, ana ekranınızda görünecek.';
+      }
+    }catch(e){}
+    render();
+  };
+  app.togglePasswordChange = function(){
+    state.changingPassword = !state.changingPassword;
+    state.pwChangeError = null;
+    state.pwChangeNotice = null;
+    render();
+  };
+  app.submitPasswordChange = function(){
+    var cur = document.getElementById('pwCurrent'), n1 = document.getElementById('pwNew1'), n2 = document.getElementById('pwNew2');
+    if(!cur || cur.value !== getAppPassword()){
+      state.pwChangeError = 'Mevcut şifre yanlış.'; render(); return;
+    }
+    if(!n1.value || n1.value.length < 4){
+      state.pwChangeError = 'Yeni şifre en az 4 karakter olmalı.'; render(); return;
+    }
+    if(n1.value !== n2.value){
+      state.pwChangeError = 'Yeni şifreler eşleşmiyor.'; render(); return;
+    }
+    try{ localStorage.setItem('app-password', n1.value); }catch(e){}
+    state.pwChangeError = null;
+    state.pwChangeNotice = 'Şifre değiştirildi.';
+    state.changingPassword = false;
+    render();
+  };
+
+  app.switchSection = function(section){
+    state.section = section;
+    if(section === 'templates'){ state.screen = 'library'; }
+    if(section === 'calc'){ state.calcScreen = 'menu'; }
+    render();
+  };
+  app.goLibrary = function(){ state.screen = 'library'; state.confirmDeleteId = null; state.editingTemplateId = null; state.editingDraftFieldId = null; render(); };
+
+  app.goUpload = function(){
+    state.screen = 'upload';
+    state.draftPages = [];
+    state.draftFields = [];
+    state.draftName = '';
+    state.pendingField = null;
+    state.editingTemplateId = null;
+    state.editingDraftFieldId = null;
+    render();
+  };
+
+  app.editTemplate = async function(id){
+    var tpl = await loadTemplate(id);
+    if(!tpl){ return; }
+    state.draftPages = tpl.pages;
+    state.draftFields = tpl.fields;
+    state.draftName = tpl.name;
+    state.editingTemplateId = id;
+    state.editingDraftFieldId = null;
+    state.pendingField = null;
+    state.saveError = null;
+    state.screen = 'mark';
+    render();
+  };
+
+  app.saveDraftFieldLabel = function(){
+    var inp = document.getElementById('editDraftLabelInput');
+    var sigChk = document.getElementById('editDraftIsSignature');
+    var field = state.draftFields.filter(function(f){ return f.id === state.editingDraftFieldId; })[0];
+    if(field && inp && inp.value.trim()){
+      field.label = inp.value.trim();
+      field.type = (sigChk && sigChk.checked) ? 'signature' : 'text';
+    }
+    state.editingDraftFieldId = null;
+    render();
+  };
+  app.deleteDraftFieldFromEdit = function(){
+    state.draftFields = state.draftFields.filter(function(f){ return f.id !== state.editingDraftFieldId; });
+    state.editingDraftFieldId = null;
+    render();
+  };
+  app.cancelDraftFieldEdit = function(){
+    state.editingDraftFieldId = null;
+    render();
+  };
+
+  app.handleFile = async function(ev){
+    var file = ev.target.files[0];
+    if(!file) return;
+    var statusEl = document.getElementById('uploadStatus');
+    statusEl.textContent = 'PDF işleniyor…';
+    try{
+      var buf = await file.arrayBuffer();
+      var images = await renderPdfToImages(buf);
+      state.draftPages = images;
+      state.draftFields = [];
+      state.draftName = file.name.replace(/\.pdf$/i,'');
+      state.screen = 'mark';
+      render();
+    }catch(e){
+      console.error(e);
+      statusEl.textContent = 'PDF okunamadı. Lütfen geçerli bir .pdf dosyası yükleyin.';
+    }
+  };
+
+  app.setDraftName = function(val){ state.draftName = val; };
+
+  app.confirmPendingField = function(){
+    var inp = document.getElementById('pendingLabelInput');
+    var sigChk = document.getElementById('pendingIsSignature');
+    var label = inp ? inp.value.trim() : '';
+    if(!label || !state.pendingField) return;
+    state.draftFields.push({
+      id: uid('f'),
+      page: state.pendingField.page,
+      xPct: state.pendingField.xPct,
+      yPct: state.pendingField.yPct,
+      wPct: state.pendingField.wPct,
+      hPct: state.pendingField.hPct,
+      label: label,
+      type: (sigChk && sigChk.checked) ? 'signature' : 'text'
+    });
+    state.pendingField = null;
+    render();
+  };
+  app.cancelPendingField = function(){ state.pendingField = null; render(); };
+
+  app.clearSignature = function(fieldId){
+    var canvas = document.getElementById('sigPad');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    var fields = state.currentTemplate.fields;
+    var field = fieldId ? fields.filter(function(f){ return f.id === fieldId; })[0] : fields[state.fieldIndex];
+    if(field){ state.answers[field.id] = ''; }
+  };
+  app.saveEditValue = function(){
+    var inp = document.getElementById('editValueInput');
+    if(inp && state.editingFieldId){
+      state.answers[state.editingFieldId] = inp.value;
+    }
+    state.editingFieldId = null;
+    render();
+  };
+  app.cancelEdit = function(){
+    state.editingFieldId = null;
+    render();
+  };
+
+  app.downloadPdf = async function(){
+    var pdfWindow = window.open('', '_blank');
+    state.pdfBusy = true; state.shareError = null; state.shareNotice = null; render();
+    try{
+      var blob = await generatePdfBlob();
+      triggerBlobDownload(blob, safeFileName(state.currentTemplate.name)+'.pdf');
+      openBlobInNewTab(blob, pdfWindow);
+    }catch(e){
+      console.error(e);
+      state.shareError = 'PDF oluşturulamadı. Lütfen tekrar deneyin.';
+      if(pdfWindow && !pdfWindow.closed){ pdfWindow.close(); }
+    }
+    state.pdfBusy = false;
+    render();
+  };
+
+  app.sharePdf = async function(){
+    state.pdfBusy = true; state.shareError = null; state.shareNotice = null; render();
+    try{
+      var blob = await generatePdfBlob();
+      var filename = safeFileName(state.currentTemplate.name)+'.pdf';
+      var file = new File([blob], filename, { type:'application/pdf' });
+      if(navigator.canShare && navigator.canShare({ files:[file] })){
+        try{
+          await navigator.share({ files:[file], title: state.currentTemplate.name || 'Belge' });
+        }catch(shareErr){
+          if(shareErr && shareErr.name !== 'AbortError'){
+            triggerBlobDownload(blob, filename);
+            state.shareNotice = 'Paylaşım penceresi açılamadı, PDF bilgisayarınıza indirildi.';
+          }
+        }
+      } else {
+        triggerBlobDownload(blob, filename);
+        state.shareNotice = 'Bu tarayıcıda doğrudan paylaşım desteklenmiyor. PDF indirildi — WhatsApp sohbetinize sürükleyip gönderebilir ya da e-posta ile iletebilirsiniz.';
+      }
+    }catch(e){
+      console.error(e);
+      state.shareError = 'PDF oluşturulamadı. Lütfen tekrar deneyin.';
+    }
+    state.pdfBusy = false;
+    render();
+  };
+  app.removeDraftField = function(id){
+    state.draftFields = state.draftFields.filter(function(f){ return f.id !== id; });
+    render();
+  };
+
+  app.confirmTemplate = async function(){
+    var isEdit = !!state.editingTemplateId;
+    var id = isEdit ? state.editingTemplateId : uid('tpl');
+    var existing = isEdit ? state.templates.filter(function(t){ return t.id === id; })[0] : null;
+    var createdAt = existing ? existing.createdAt : Date.now();
+    var tpl = { id:id, name: state.draftName.trim(), pages: state.draftPages, fields: state.draftFields, createdAt: createdAt };
+    state.saving = true;
+    render();
+    var ok = await saveTemplate(tpl);
+    state.saving = false;
+    if(!ok){
+      state.saveError = 'Şablon kaydedilemedi. Belge çok büyük olabilir (tarayıcı depolama sınırına takıldı) — daha az sayfalı bir PDF ile tekrar deneyin.';
+      render();
+      return;
+    }
+    state.saveError = null;
+    var indexEntry = { id:id, name:tpl.name, fieldCount: tpl.fields.length, pageCount: tpl.pages.length, createdAt: tpl.createdAt };
+    if(isEdit){
+      state.templates = state.templates.map(function(t){ return t.id === id ? indexEntry : t; });
+    } else {
+      state.templates.push(indexEntry);
+    }
+    await saveIndex();
+    state.editingTemplateId = null;
+    state.screen = 'library';
+    render();
+  };
+
+  app.askDeleteTemplate = function(id){
+    state.confirmDeleteId = id;
+    render();
+  };
+  app.cancelDeleteTemplate = function(){
+    state.confirmDeleteId = null;
+    render();
+  };
+  app.removeTemplate = async function(id){
+    state.confirmDeleteId = null;
+    await deleteTemplate(id);
+    render();
+  };
+
+  app.exportTemplate = async function(id){
+    var tpl = await loadTemplate(id);
+    if(!tpl){
+      state.importError = 'Bu şablon bu cihazda bulunamadı, aktarılamıyor.';
+      render();
+      return;
+    }
+    var blob = new Blob([JSON.stringify(tpl)], { type:'application/json' });
+    var result = await saveBlobSmart(blob, safeFileName(tpl.name)+'.json', 'application/json');
+    if(result !== 'cancelled'){
+      state.importNotice = result === 'saved-to-folder'
+        ? 'Dosya seçtiğiniz klasöre kaydedildi.'
+        : 'Dosya indirildi (İndirilenler klasörüne).';
+      render();
+    }
+  };
+
+  app.exportAllTemplates = async function(){
+    state.importError = null; state.importNotice = null;
+    var bundle = [];
+    for(var i=0;i<state.templates.length;i++){
+      var tpl = await loadTemplate(state.templates[i].id);
+      if(tpl) bundle.push(tpl);
+    }
+    if(!bundle.length){
+      state.importError = 'Aktarılacak şablon bulunamadı.';
+      render();
+      return;
+    }
+    var blob = new Blob([JSON.stringify(bundle)], { type:'application/json' });
+    var result = await saveBlobSmart(blob, 'sablonlarim.json', 'application/json');
+    if(result === 'cancelled'){ return; }
+    state.importNotice = result === 'saved-to-folder'
+      ? (bundle.length+' şablon, seçtiğiniz klasöre kaydedildi. Bu klasör Google Drive/OneDrive senkron klasörünüzse, telefonunuzda otomatik olarak belirir.')
+      : (bundle.length+' şablon İndirilenler klasörüne indirildi.');
+    render();
+  };
+
+  app.importTemplateFile = async function(ev){
+    var file = ev.target.files[0];
+    if(!file) return;
+    state.importError = null; state.importNotice = null;
+    try{
+      var text = await file.text();
+      var parsed = JSON.parse(text);
+      var list = Array.isArray(parsed) ? parsed : [parsed];
+      var importedNames = [];
+      for(var i=0;i<list.length;i++){
+        var tpl = list[i];
+        if(!tpl || !tpl.pages || !tpl.fields || !Array.isArray(tpl.pages)) continue;
+        if(!tpl.id){ tpl.id = uid('tpl'); }
+        if(!tpl.createdAt){ tpl.createdAt = Date.now(); }
+        await saveTemplate(tpl);
+        state.templates = state.templates.filter(function(t){ return t.id !== tpl.id; });
+        state.templates.push({ id:tpl.id, name:tpl.name, fieldCount: tpl.fields.length, pageCount: tpl.pages.length, createdAt: tpl.createdAt });
+        importedNames.push(tpl.name);
+      }
+      if(!importedNames.length){ throw new Error('geçerli şablon bulunamadı'); }
+      await saveIndex();
+      state.importNotice = importedNames.length===1
+        ? ('"'+importedNames[0]+'" şablonu eklendi.')
+        : (importedNames.length+' şablon eklendi: '+importedNames.join(', '));
+      render();
+    }catch(e){
+      console.error(e);
+      state.importError = 'Dosya okunamadı. Lütfen "Tüm Şablonları Tek Dosyada Dışa Aktar" ile indirdiğiniz dosyayı seçtiğinizden emin olun.';
+      render();
+    }
+  };
+
+  app.startFill = async function(id){
+    var tpl = await loadTemplate(id);
+    if(!tpl) return;
+    state.currentTemplate = tpl;
+    state.answers = {};
+    state.fieldIndex = 0;
+    state.screen = tpl.fields.length ? 'fill' : 'done';
+    render();
+  };
+
+  app.nextField = function(){
+    var fields = state.currentTemplate.fields;
+    var field = fields[state.fieldIndex];
+    if(field.type !== 'signature'){
+      var inp = document.getElementById('answerInput');
+      state.answers[field.id] = inp ? inp.value : (state.answers[field.id]||'');
+    }
+    if(state.fieldIndex < fields.length-1){ state.fieldIndex++; render(); }
+    else { state.screen = 'done'; render(); }
+  };
+  app.prevField = function(){
+    var fields = state.currentTemplate.fields;
+    var field = fields[state.fieldIndex];
+    if(field.type !== 'signature'){
+      var inp = document.getElementById('answerInput');
+      state.answers[field.id] = inp ? inp.value : (state.answers[field.id]||'');
+    }
+    if(state.fieldIndex > 0){ state.fieldIndex--; render(); }
+  };
+
+  // ---------- şirket profili işlevleri ----------
+  app.handleLogoUpload = function(ev){
+    var file = ev.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      state.company.logo = reader.result;
+      render();
+    };
+    reader.readAsDataURL(file);
+  };
+  app.setCompanyField = function(key, val){
+    state.company[key] = val;
+  };
+  app.saveCompanyProfile = async function(){
+    var ok = await saveCompanyProfileToStorage();
+    state.companyNotice = ok ? 'Şirket profili kaydedildi.' : 'Kaydedilemedi, tekrar deneyin.';
+    render();
+  };
+
+  // ---------- hesaplama işlevleri ----------
+  app.goCalc = function(screen){
+    state.section = 'calc';
+    state.calcScreen = screen;
+    state.calcPdfError = null;
+    render();
+  };
+
+  app.formatAmountInput = function(el){
+    var cursorFromEnd = el.value.length - el.selectionStart;
+    var raw = el.value.replace(/\D/g,'');
+    var formatted = formatThousands(raw);
+    el.value = formatted;
+    var pos = Math.max(0, formatted.length - cursorFromEnd);
+    try{ el.setSelectionRange(pos,pos); }catch(e){}
+  };
+
+  app.recalcGeneric = function(type){
+    var inputsCfg = CALC_INPUTS[type];
+    var raw = {};
+    inputsCfg.forEach(function(f){
+      var el = document.getElementById('ci_'+f.key);
+      raw[f.key] = el ? num(el.value) : 0;
+    });
+    state.calcRaw[type] = raw;
+    recomputeCalc(type);
+    refreshCalcResultsDom(type);
+  };
+
+  app.startEditCell = function(spanEl, type, cellId){
+    if(spanEl.querySelector('input')) return;
+    var raw = parseFloat(spanEl.getAttribute('data-raw')) || 0;
+    var def = CALC_DEFS[type].filter(function(d){ return d.id === cellId; })[0];
+    var isPlain = def.format && def.format !== fmtTL;
+    var initial = isPlain ? String(Math.round(raw*100)/100) : formatThousands(Math.round(raw));
+    spanEl.innerHTML = '<input class="edit-cell-input" type="text" value="'+initial+'"/>';
+    var inp = spanEl.querySelector('input');
+    inp.addEventListener('click', function(e){ e.stopPropagation(); });
+    inp.addEventListener('input', function(){ if(!isPlain){ app.formatAmountInput(inp); } });
+    var committed = false;
+    function commit(){
+      if(committed) return;
+      committed = true;
+      app.commitCellEdit(type, cellId, num(inp.value));
+    }
+    inp.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ commit(); }
+      if(e.key === 'Escape'){ committed = true; refreshCalcResultsDom(type); }
+    });
+    inp.addEventListener('blur', commit);
+    inp.focus(); inp.select();
+  };
+
+  app.commitCellEdit = function(type, cellId, newVal){
+    var defs = CALC_DEFS[type];
+    var idx = -1;
+    defs.forEach(function(d,i){ if(d.id===cellId) idx = i; });
+    state.calcOverrides[type] = state.calcOverrides[type] || {};
+    defs.forEach(function(d,i){ if(i>idx){ delete state.calcOverrides[type][d.id]; } });
+    state.calcOverrides[type][cellId] = true;
+    state.calcValues[type] = state.calcValues[type] || {};
+    state.calcValues[type][cellId] = newVal;
+    recomputeCalc(type);
+    refreshCalcResultsDom(type);
+  };
+
+  app.resetCalcOverrides = function(type){
+    state.calcOverrides[type] = {};
+    recomputeCalc(type);
+    refreshCalcResultsDom(type);
+  };
+
+  app.downloadCalcPdf = async function(type){
+    var meta = CALC_META[type];
+    if(!state.calcValues[type]){ state.calcPdfError = 'Önce hesaplama alanlarını doldurun.'; render(); return; }
+    var pdfWindow = window.open('', '_blank');
+    state.calcPdfBusy = true; state.calcPdfError = null; render();
+    try{
+      var sections = buildCalcSections(type);
+      var noteText = null;
+      if(type === 'kira'){
+        var raw = state.calcRaw.kira || {};
+        var values = state.calcValues.kira || {};
+        noteText = kiraYorumMetni(raw.satisFiyati, raw.aylikKira, values.getiriOrani||0);
+      }
+      var blob = await generateCalcSummaryPdfBlob(meta.pdfTitle, sections, noteText);
+      var result = await saveBlobSmart(blob, safeFileName(meta.pdfTitle)+'.pdf', 'application/pdf');
+      if(result !== 'cancelled'){ openBlobInNewTab(blob, pdfWindow); }
+      else if(pdfWindow && !pdfWindow.closed){ pdfWindow.close(); }
+    }catch(e){
+      console.error(e);
+      state.calcPdfError = 'PDF oluşturulamadı. Lütfen tekrar deneyin.';
+      if(pdfWindow && !pdfWindow.closed){ pdfWindow.close(); }
+    }
+    state.calcPdfBusy = false;
+    render();
+  };
+
+  window.app = app;
+
+  // ---------- manual field drawing (mouse + touch) ----------
+  function getPoint(e){
+    if(e.touches && e.touches.length){ return { x:e.touches[0].clientX, y:e.touches[0].clientY }; }
+    return { x:e.clientX, y:e.clientY };
+  }
+
+  function onDrawStart(e){
+    if(e.touches && e.touches.length > 1) return; // iki parmakla yakınlaştırma (pinch-zoom) — sürükleme başlatma
+    var pageEl = e.target.closest ? e.target.closest('.pdf-page') : null;
+    if(!pageEl) return;
+
+    var handleEl = e.target.closest ? e.target.closest('.resize-handle') : null;
+    if(handleEl && (state.screen === 'mark' || state.screen === 'done')){
+      var rFieldId = handleEl.getAttribute('data-field-id');
+      var rList = state.screen === 'mark' ? state.draftFields : state.currentTemplate.fields;
+      var rField = rList.filter(function(f){ return f.id === rFieldId; })[0];
+      if(rField){
+        var rRect = pageEl.getBoundingClientRect();
+        var rPt = getPoint(e);
+        state.resizingField = {
+          fieldId: rFieldId,
+          list: state.screen === 'mark' ? 'draft' : 'current',
+          startX: rPt.x, startY: rPt.y,
+          origWPct: rField.wPct, origHPct: rField.hPct,
+          rectW: rRect.width, rectH: rRect.height
+        };
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+    }
+
+    if(state.screen === 'mark'){
+      var existingBox = e.target.closest ? e.target.closest('.fld-box.saved, .fld-box.editable') : null;
+      if(existingBox && existingBox.id && existingBox.id.indexOf('field-box-') === 0){
+        var mfId = existingBox.id.replace('field-box-','');
+        var mfField = state.draftFields.filter(function(f){ return f.id === mfId; })[0];
+        if(mfField){
+          var mfRect = pageEl.getBoundingClientRect();
+          var mfPt = getPoint(e);
+          state.movingMarkField = {
+            fieldId: mfId,
+            startX: mfPt.x, startY: mfPt.y,
+            origXPct: mfField.xPct, origYPct: mfField.yPct,
+            rectW: mfRect.width, rectH: mfRect.height,
+            moved: false
+          };
+          e.preventDefault();
+          return;
+        }
+      }
+      var rect = pageEl.getBoundingClientRect();
+      var pt = getPoint(e);
+      var x = clamp(pt.x-rect.left,0,rect.width);
+      var y = clamp(pt.y-rect.top,0,rect.height);
+      state.drawing = { pageIndex: parseInt(pageEl.dataset.pageIndex,10), startX:x, startY:y, rectW:rect.width, rectH:rect.height };
+      var temp = document.createElement('div');
+      temp.id = 'tempRect';
+      temp.style.left = x+'px'; temp.style.top = y+'px'; temp.style.width='0px'; temp.style.height='0px';
+      pageEl.appendChild(temp);
+      e.preventDefault();
+      return;
+    }
+
+    if(state.screen === 'done'){
+      var fieldBox = e.target.closest ? e.target.closest('.fld-box') : null;
+      if(!fieldBox) return;
+      var fieldId = fieldBox.id.replace('field-box-','');
+      var field = state.currentTemplate.fields.filter(function(f){ return f.id === fieldId; })[0];
+      if(!field) return;
+      var rect2 = pageEl.getBoundingClientRect();
+      var pt2 = getPoint(e);
+      state.movingField = {
+        fieldId: fieldId,
+        startX: pt2.x, startY: pt2.y,
+        origXPct: field.xPct, origYPct: field.yPct,
+        rectW: rect2.width, rectH: rect2.height,
+        moved: false
+      };
+      e.preventDefault();
+      return;
+    }
+  }
+  function onDrawMove(e){
+    if(e.touches && e.touches.length > 1){
+      // iki parmakla yakınlaştırmaya geçildi, sürüklemeyi/boyutlandırmayı iptal et
+      state.resizingField = null; state.drawing = null; state.movingField = null; state.movingMarkField = null;
+      var tempEl = document.getElementById('tempRect'); if(tempEl) tempEl.remove();
+      return;
+    }
+    if(state.resizingField){
+      e.preventDefault();
+      var rf = state.resizingField;
+      var rPt2 = getPoint(e);
+      var dwPct = (rPt2.x - rf.startX) / rf.rectW * 100;
+      var dhPct = (rPt2.y - rf.startY) / rf.rectH * 100;
+      var newW = clamp(rf.origWPct + dwPct, 2, 100);
+      var newH = clamp(rf.origHPct + dhPct, 1.5, 100);
+      var rBox = document.getElementById('field-box-'+rf.fieldId);
+      if(rBox){ rBox.style.width = newW+'%'; rBox.style.height = newH+'%'; rBox.dataset.pendingW = newW; rBox.dataset.pendingH = newH; }
+      return;
+    }
+    if(state.drawing){
+      e.preventDefault();
+      var pageEl = document.querySelector('.pdf-page[data-page-index="'+state.drawing.pageIndex+'"]');
+      if(!pageEl) return;
+      var rect = pageEl.getBoundingClientRect();
+      var pt = getPoint(e);
+      var x = clamp(pt.x-rect.left,0,rect.width);
+      var y = clamp(pt.y-rect.top,0,rect.height);
+      var d = state.drawing;
+      var left = Math.min(d.startX, x), top = Math.min(d.startY, y);
+      var w = Math.abs(x-d.startX), h = Math.abs(y-d.startY);
+      var temp = document.getElementById('tempRect');
+      if(temp){ temp.style.left=left+'px'; temp.style.top=top+'px'; temp.style.width=w+'px'; temp.style.height=h+'px'; }
+      return;
+    }
+    if(state.movingField){
+      e.preventDefault();
+      var m = state.movingField;
+      var pt2 = getPoint(e);
+      var dxPct = (pt2.x - m.startX) / m.rectW * 100;
+      var dyPct = (pt2.y - m.startY) / m.rectH * 100;
+      if(Math.abs(pt2.x-m.startX) > 3 || Math.abs(pt2.y-m.startY) > 3){ m.moved = true; }
+      var newX = clamp(m.origXPct + dxPct, 0, 100);
+      var newY = clamp(m.origYPct + dyPct, 0, 100);
+      var box = document.getElementById('field-box-'+m.fieldId);
+      if(box){ box.style.left = newX+'%'; box.style.top = newY+'%'; box.dataset.pendingX = newX; box.dataset.pendingY = newY; }
+      return;
+    }
+    if(state.movingMarkField){
+      e.preventDefault();
+      var mm = state.movingMarkField;
+      var mmPt = getPoint(e);
+      var mmDx = (mmPt.x - mm.startX) / mm.rectW * 100;
+      var mmDy = (mmPt.y - mm.startY) / mm.rectH * 100;
+      if(Math.abs(mmPt.x-mm.startX) > 3 || Math.abs(mmPt.y-mm.startY) > 3){ mm.moved = true; }
+      var mmNewX = clamp(mm.origXPct + mmDx, 0, 100);
+      var mmNewY = clamp(mm.origYPct + mmDy, 0, 100);
+      var mmBox = document.getElementById('field-box-'+mm.fieldId);
+      if(mmBox){ mmBox.style.left = mmNewX+'%'; mmBox.style.top = mmNewY+'%'; mmBox.dataset.pendingX = mmNewX; mmBox.dataset.pendingY = mmNewY; }
+      return;
+    }
+  }
+  function onDrawEnd(e){
+    if(state.resizingField){
+      var rf = state.resizingField;
+      var rBox = document.getElementById('field-box-'+rf.fieldId);
+      if(rBox && rBox.dataset.pendingW !== undefined){
+        var rList = rf.list === 'draft' ? state.draftFields : state.currentTemplate.fields;
+        var rField = rList.filter(function(f){ return f.id === rf.fieldId; })[0];
+        if(rField){
+          rField.wPct = parseFloat(rBox.dataset.pendingW);
+          rField.hPct = parseFloat(rBox.dataset.pendingH);
+        }
+      }
+      state.resizingField = null;
+      render();
+      return;
+    }
+    if(state.drawing){
+      var d = state.drawing;
+      var temp = document.getElementById('tempRect');
+      state.drawing = null;
+      if(!temp){ return; }
+      var left = parseFloat(temp.style.left), top = parseFloat(temp.style.top);
+      var w = parseFloat(temp.style.width), h = parseFloat(temp.style.height);
+      temp.remove();
+      if(w < 8 || h < 8) return;
+      state.pendingField = {
+        page: d.pageIndex,
+        xPct: left/d.rectW*100,
+        yPct: top/d.rectH*100,
+        wPct: w/d.rectW*100,
+        hPct: h/d.rectH*100
+      };
+      render();
+      return;
+    }
+    if(state.movingField){
+      var m = state.movingField;
+      var box = document.getElementById('field-box-'+m.fieldId);
+      if(m.moved && box){
+        var field = state.currentTemplate.fields.filter(function(f){ return f.id === m.fieldId; })[0];
+        if(field){
+          field.xPct = parseFloat(box.dataset.pendingX);
+          field.yPct = parseFloat(box.dataset.pendingY);
+        }
+        state.movingField = null;
+        render();
+      } else {
+        state.movingField = null;
+        state.editingFieldId = m.fieldId;
+        render();
+      }
+      return;
+    }
+    if(state.movingMarkField){
+      var mm = state.movingMarkField;
+      var mmBox = document.getElementById('field-box-'+mm.fieldId);
+      if(mm.moved && mmBox){
+        var mmField = state.draftFields.filter(function(f){ return f.id === mm.fieldId; })[0];
+        if(mmField){
+          mmField.xPct = parseFloat(mmBox.dataset.pendingX);
+          mmField.yPct = parseFloat(mmBox.dataset.pendingY);
+        }
+        state.movingMarkField = null;
+        render();
+      } else {
+        state.movingMarkField = null;
+        state.editingDraftFieldId = mm.fieldId;
+        render();
+      }
+      return;
+    }
+  }
+
+  document.addEventListener('mousedown', onDrawStart);
+  document.addEventListener('mousemove', onDrawMove);
+  document.addEventListener('mouseup', onDrawEnd);
+  document.addEventListener('touchstart', onDrawStart, {passive:false});
+  document.addEventListener('touchmove', onDrawMove, {passive:false});
+  document.addEventListener('touchend', onDrawEnd);
+
+  // ---------- init ----------
+  try{ state.unlocked = localStorage.getItem('app-unlocked') === 'true'; }catch(e){ state.unlocked = false; }
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    state.installPromptEvent = e;
+    if(state.unlocked){ render(); }
+  });
+  window.addEventListener('appinstalled', function(){
+    state.installPromptEvent = null;
+    state.installNotice = 'Uygulama ana ekranınıza eklendi.';
+    if(state.unlocked){ render(); }
+  });
+
+  Promise.all([loadIndex(), loadCompanyProfile()]).then(render);
+
+})();
+</script>
+</body>
+</html>
