@@ -1718,8 +1718,9 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 
   app.resetCalcOverrides = function(type){
     state.calcOverrides[type] = {};
-    recomputeCalc(type);
-    refreshCalcResultsDom(type);
+    state.calcValues[type] = {};
+    state.calcRaw[type] = null;
+    render();
   };
 
   app.downloadCalcPdf = async function(type){
