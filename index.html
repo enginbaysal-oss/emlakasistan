@@ -55,6 +55,10 @@
   .library-list{display:flex;flex-direction:column;gap:14px;width:100%;max-width:640px;}
   .tpl-card{background:#fff;border-radius:14px;padding:18px 22px;box-shadow:var(--shadow);border-left:5px solid var(--sage);}
   .tpl-card-top{display:flex;justify-content:space-between;align-items:center;gap:14px;}
+  .reorder-col{display:flex;flex-direction:column;gap:2px;}
+  .reorder-btn{width:26px;height:22px;border:1px solid var(--paper-line);background:#fff;color:var(--gray);border-radius:5px;cursor:pointer;font-size:10px;line-height:1;padding:0;}
+  .reorder-btn:hover:not(:disabled){background:var(--paper);color:var(--sage-dark);border-color:var(--sage);}
+  .reorder-btn:disabled{opacity:0.3;cursor:default;}
   .tpl-card-footer{display:flex;justify-content:flex-end;align-items:center;gap:18px;margin-top:14px;padding-top:12px;border-top:1px solid var(--paper-line);}
   .link-muted{background:none;border:none;color:var(--gray);font-size:12.5px;cursor:pointer;text-decoration:underline;padding:6px 2px;}
   .link-muted:hover{color:var(--sage-dark);}
@@ -530,15 +534,19 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
   }
 
   function renderLibrary(){
-    var list = state.templates.map(function(t){
+    var list = state.templates.map(function(t, idx){
       var deleteBtn = (state.confirmDeleteId === t.id)
         ? ('<span class="danger-confirm-row">Emin misiniz? ' +
             '<button class="btn btn-danger btn-sm" onclick="app.removeTemplate(\''+t.id+'\')">Evet, Sil</button> ' +
             '<button class="btn btn-ghost btn-sm" onclick="app.cancelDeleteTemplate()">Vazgeç</button></span>')
         : ('<button class="link-danger" onclick="app.askDeleteTemplate(\''+t.id+'\')">Sil</button>');
+      var moveButtons =
+        '<button class="reorder-btn" '+(idx===0?'disabled':'')+' onclick="app.moveTemplate(\''+t.id+'\',-1)" title="Yukarı taşı">▲</button>' +
+        '<button class="reorder-btn" '+(idx===state.templates.length-1?'disabled':'')+' onclick="app.moveTemplate(\''+t.id+'\',1)" title="Aşağı taşı">▼</button>';
       return '<div class="tpl-card">' +
         '<div class="tpl-card-top">' +
-          '<div><div class="tpl-name">'+escapeHtml(t.name)+'</div>' +
+          '<div class="reorder-col">'+moveButtons+'</div>' +
+          '<div style="flex:1;"><div class="tpl-name">'+escapeHtml(t.name)+'</div>' +
           '<div class="tpl-meta">'+t.fieldCount+' alan · '+t.pageCount+' sayfa · '+new Date(t.createdAt).toLocaleDateString('tr-TR')+'</div></div>' +
           '<div class="btn-row">' +
             '<button class="btn btn-ghost" onclick="app.editTemplate(\''+t.id+'\')">Düzenle</button>' +
@@ -1533,6 +1541,20 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
     state.editingTemplateId = null;
     state.screen = 'library';
     render();
+  };
+
+  app.moveTemplate = async function(id, dir){
+    var idx = -1;
+    state.templates.forEach(function(t,i){ if(t.id===id) idx=i; });
+    if(idx < 0) return;
+    var newIdx = idx + dir;
+    if(newIdx < 0 || newIdx >= state.templates.length) return;
+    var arr = state.templates;
+    var tmp = arr[idx];
+    arr[idx] = arr[newIdx];
+    arr[newIdx] = tmp;
+    render();
+    await saveIndex();
   };
 
   app.askDeleteTemplate = function(id){
